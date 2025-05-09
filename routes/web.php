@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\HomeBannerDetailsController;
 use App\Http\Controllers\Backend\ProjectsController;
 use App\Http\Controllers\Backend\PartnersController;
 use App\Http\Controllers\Backend\AssociateController;
+use App\Http\Controllers\Backend\ServicesController;
 
 // Route::get('/', function () {
 //     return view('frontend.home');
@@ -39,3 +40,6 @@ Route::resource('manage-clientele', PartnersController::class);
 
 // ==== Manage Associates in Home
 Route::resource('manage-associates', AssociateController::class);
+
+// ==== Manage services in Home
+Route::resource('manage-services', ServicesController::class);
