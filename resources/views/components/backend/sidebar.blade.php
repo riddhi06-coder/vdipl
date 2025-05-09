@@ -56,7 +56,7 @@
                     <li><a href="{{ route('home-banner.index') }}">Service</a></li>
                     <li><a href="{{ route('manage-projects.index') }}">Our Projects</a></li>
                     <li><a href="{{ route('manage-clientele.index') }}">Clientele</a></li>
-                    <li><a href="{{ route('manage-clientele.index') }}">Associates</a></li>
+                    <li><a href="{{ route('manage-associates.index') }}">Associates</a></li>
                   </ul>
                 </li>
 
