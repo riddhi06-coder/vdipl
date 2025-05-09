@@ -54,7 +54,7 @@
                   <ul class="sidebar-submenu">
                     <li><a href="{{ route('home-banner.index') }}">Banner & Innovation</a></li>
                     <li><a href="{{ route('home-banner.index') }}">Service</a></li>
-                    <li><a href="{{ route('home-banner.index') }}">Our Projects</a></li>
+                    <li><a href="{{ route('manage-projects.index') }}">Our Projects</a></li>
                     <li><a href="{{ route('home-banner.index') }}">Clientele & Associates</a></li>
                   </ul>
                 </li>

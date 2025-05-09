@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Backend\HomeBannerDetailsController;
+use App\Http\Controllers\Backend\ProjectsController;
 
 // Route::get('/', function () {
 //     return view('frontend.home');
@@ -25,6 +26,8 @@ Route::group(['middleware' => ['auth:web', \App\Http\Middleware\PreventBackHisto
     })->name('admin.dashboard');
 });
 
-
 // ==== Manage Banner Details in Home
 Route::resource('home-banner', HomeBannerDetailsController::class);
+
+// ==== Manage Banner Details in Home
+Route::resource('manage-projects', ProjectsController::class);
