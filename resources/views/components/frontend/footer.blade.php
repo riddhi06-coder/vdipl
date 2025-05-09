@@ -1,84 +1,105 @@
-<footer class="footer-section">
-    <div class="upper-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="widget about-widget pe-0">
-                        <p>For any issues related to any products give us a call or connect with us here</p>
-                        <div class="contact-ft">
-                            <ul>
-                                @php
-                                    $footer = \App\Models\HomeFooter::first();
-                                @endphp
-                                <li><i class="fa fa-envelope"></i>Email: <a href="mailto:{{ $footer->email }}">{{ $footer->email }}</a></li>
-                                <li><i class="fa fa-phone"></i>  Call: <a href="tel:{{ $footer->contact_number }}">{{ $footer->contact_number }}</a></li>
-                                <li>
-                                    <i class="fa fa-map-marker"></i> 
-                                    <a href="https://maps.app.goo.gl/1n97eYHCXh4vM7QV7" target="_blank" rel="noopener noreferrer">
-                                        {!! $footer->address !!}
-                                    </a>
-                                </li>
-                                <li><i class="fa fa-clock-o"></i> {{ $footer->time }}</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col col-lg-1 col-md-12 col-sm-12 col-12"></div>
-
-                <div class="col col-lg-3 col-md-6 col-sm-12 col-12">
-                    <div class="widget link-widget">
-                        <div class="widget-title">
-                            <h3>Quick Links</h3>
-                        </div>
-                        <ul>
-                            <li><a href="{{ route('about-us.page') }}">About Us</a></li>
-                            <li><a href="{{ route('products.category') }}">Products</a></li>
-                            <li><a href="{{ route('photo.gallery') }}">Photo Gallery</a></li>
-                            <li><a href="{{ route('career.resources') }}">Career Resources</a></li>
-                            <li><a href="{{ route('blogs') }}">Blogs</a></li>
-                            <li><a href="{{ route('shopping.guide') }}">Shopping Guide</a></li>
-                            <li><a href="{{ route('privacy.policy') }}">Privacy Policy</a></li>
-                            <li><a href="{{ route('contact.us') }}">Contact Us</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-                    <div class="widget subscribe">
-                        <div class="widget-title">
-                            <h3>Newsletter</h3>
-                        </div>
-                        <p>Subscribe to our newsletters now and stay up to date with new collections, the latest lookbooks and exclusive offers.</p>
-                        <form action="{{ route('subscribe') }}" method="POST">
-                            @csrf
-                            <div class="form-field">
-                                <input type="email" name="email" placeholder="Enter Your Email Address" required>
-                                <button type="submit" class="small-btn-style">SUBSCRIBE!</button>
-                            </div>
-                            @error('email')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </form>
-
-                    </div>
-                </div>
+<footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12">
+            <a href="index.html"><img src="images/home/vdipl-footer-logo.webp" alt="footer-logo"></a>
+            <p class="morbi">VAIBHAVDESHMUKH INFRAPROJECTS PVT LTD (VDIPL) was founded in 2007 under the visionary leadership of Mr. Vaibhav Deshmukh, who relentlessly pursued his dream to create an enterprise that would leave a lasting impact on India’s infrastructure landscape. Initially established as M/s Vaibhav Construction, the company has since evolved into VDIPL, a trusted name in the industry.
+            </p>
+          </div> 
+          <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12">
+            <div class="row two-rows-wrap">
+              <div class="col-6">
+            <h2 class="useful-link-text">Useful Links</h2>
+                <ul class="usefulLinks-List">
+                  <li><a href="index.html">Home</a></li>
+                  <li><a href="about.html">About Us</a></li>
+                  <li><a href="#">Services</a></li>
+                  <li><a href="projects.html">Projects</a></li>
+                  <li><a href="our-assets.html">Our Assesets</a></li>
+                  <li><a href="careers.html">Careers</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+              </div>
+              <div class="col-6">
+            <h2 class="useful-link-text">Services</h2>
+                <ul class="usefulLinks-List">
+                   <li><a href="road-urban-utilitie.html">Road Construction & Urban Utilities</a></li>
+                        <li><a href="#">Earthwork Projects</a></li>
+                        <li><a href="#">Warehouse Construction</a></li>
+                        <li><a href="#">Ready Mix Concrete</a></li>
+                        <li><a href="#">Quarrying & Crusher Operations</a></li>
+                        <li><a href="#">Asphalt and Bitumen Mixing </a></li>
+                </ul>
+              </div>
             </div>
-        </div>
-        <!-- end container -->
-    </div>
-
-    <div class="lower-footer">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-12">
-                    <div class="text-center">
-                        <p>Copyright © {{ date('Y') }} Jha Electricals. All rights reserved. Designed By 
-                            <a href="https://matrixbricks.com/" target="_blank">Matrix Bricks</a>
-                        </p>
-                    </div>
-                </div>
+          </div>
+          <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12">
+            <h2 class="useful-link-text">Contact Us</h2>
+            <div class="head-phone-white-main">
+              <div class="headphone-white">
+                <img src="images/icons/contact/webp/phone-white.webp" alt="headphone-white">
+              </div>
+              <div>
+                <p class="CallUs">Call Us</p>
+                <a href="tel:+91 22 27454244 " class="CallUs-phone">
+                  +91 22 27454244 
+                </a>
+              </div>
             </div>
+            <div class="head-phone-white-main">
+              <div class="headphone-white">
+                <img src="images/icons/contact/webp/email-white.webp" alt="email-White">
+              </div>
+              <div>
+                <p class="CallUs">Email Us</p>
+                <a href="mailto:info@vdipl.in" class="CallUs-phone">
+                  info@vdipl.in
+                </a>
+              </div>
+            </div>
+            <div class="head-phone-white-main">
+              <div class="headphone-white">
+                <img src="images/icons/contact/webp/maps-white.webp" alt="loaction-white">
+              </div>
+              <div>
+                <p class="CallUs">Find Us</p>
+                <p class="CallUs-phone">Office No. B3- B4, 1st Floor, Bldg. No. 7B, Dwarkamai, Gurusharnam Complex, Vishrali Naka, <br>Panvel - 410 206.</p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </footer>
+    <!-- ====================================== Copyright ===================================== -->
+    <div class="copyright-main">
+      <div class="container">
+        <div class="rights-reserved">
+          <h2>
+            <div id="copyright">
+                Copyright © 2024 VDIPL. All rights reserved. Designed By <a href="http://www.matrixbricks.com" target="_blank">Matrix Bricks</a></div>
+            </h2>
+          <div class="home-media-icon-main-head">
+            <a href="#">
+              <div class="home-media-icon-main">
+                <i class="fa-brands fa-facebook-f"></i>
+              </div>
+            </a>
+            <a href="#">
+              <div class="home-media-icon-main">
+                <i class="fa-brands fa-x-twitter"></i>
+              </div>
+            </a>
+            <a href="#">
+              <div class="home-media-icon-main">
+                <i class="fa-brands fa-instagram"></i>
+              </div>
+            </a>
+            <a href="#">
+              <div class="home-media-icon-main">
+                <i class="fa-brands fa-youtube"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-</footer>
