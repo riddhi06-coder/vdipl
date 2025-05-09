@@ -47,128 +47,128 @@
                             <div class="col-12">
                             <div class="tab-content" id="wizard-tabContent">
                                 <div class="tab-pane fade show active" id="wizard-contact" role="tabpanel" aria-labelledby="wizard-contact-tab">
-                                <form class="row g-3 needs-validation custom-input" novalidate action="{{ route('home-banner.store') }}" method="POST" enctype="multipart/form-data">
-                                    @csrf
+                                    <form class="row g-3 needs-validation custom-input" novalidate action="{{ route('home-banner.store') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
 
-                                     <!-- Banner Heading -->
-                                     <div class="col-md-6">
-                                        <label class="form-label" for="banner_heading">Banner Heading <span class="txt-danger">*</span></label>
-                                        <input class="form-control" id="banner_heading" type="text" name="banner_heading" placeholder="Enter Banner Heading" required>
-                                        <div class="invalid-feedback">Please enter a banner Heading.</div>
-                                    </div>
-
-                                    <!-- Video Upload -->
-                                    <div class="col-md-6 mt-3">
-                                        <label class="form-label" for="banner_video">Upload Video <span class="txt-danger">*</span></label>
-                                        <input class="form-control" id="banner_video" type="file" name="banner_video" accept="video/mp4,video/webm,video/ogg" required>
-                                        <small class="text-secondary"><b>Note: Maximum file size is 3MB. Allowed formats: .mp4, .webm, .ogg</b></small>
-                                        <div class="invalid-feedback">Please upload a video (Max 3MB).</div>
-
-                                        <!-- Video Preview Container -->
-                                        <div id="videoPreviewContainer" class="mt-2" style="display: none;">
-                                            <label class="form-label">Preview:</label>
-                                            <video id="videoPreview" autoplay muted loop controls width="100%" style="border: 1px solid #ccc; border-radius: 5px;"></video>
+                                        <!-- Banner Heading -->
+                                        <div class="col-md-6">
+                                            <label class="form-label" for="banner_heading">Banner Heading <span class="txt-danger">*</span></label>
+                                            <input class="form-control" id="banner_heading" type="text" name="banner_heading" placeholder="Enter Banner Heading" value="{{ old('banner_heading') }}" required>
+                                            <div class="invalid-feedback">Please enter a banner Heading.</div>
                                         </div>
-                                    </div>
 
-                                    <hr>
+                                        <!-- Video Upload -->
+                                        <div class="col-md-6 mt-3">
+                                            <label class="form-label" for="banner_video">Upload Video <span class="txt-danger">*</span></label>
+                                            <input class="form-control" id="banner_video" type="file" name="banner_video" accept="video/mp4,video/webm,video/ogg" required>
+                                            <small class="text-secondary"><b>Note: Maximum file size is 4MB. Allowed formats: .mp4, .webm, .ogg</b></small>
+                                            <div class="invalid-feedback">Please upload a video (Max 4MB).</div>
 
-                                    <h3># Innovation Section</h3>
-
-                                    <!-- Section Heading -->
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="section_heading">Section Heading <span class="txt-danger">*</span></label>
-                                        <input class="form-control" id="section_heading" type="text" name="section_heading" placeholder="Enter Section Heading" required>
-                                        <div class="invalid-feedback">Please enter a Section Heading.</div>
-                                    </div>
-
-
-                                    <!-- Image Upload -->
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="banner_image">Image <span class="txt-danger">*</span></label>
-                                        <input class="form-control" id="banner_image" type="file" name="banner_image" accept=".jpg, .jpeg, .png, .webp" required onchange="previewBannerImage()">
-                                        <div class="invalid-feedback">Please upload an image.</div>
-                                        <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
-                                        <br>
-                                        <small class="text-secondary"><b>Only .jpg, .jpeg, .png, .webp formats are allowed.</b></small>
-
-                                        <!-- Preview Section (Moved here) -->
-                                        <div id="bannerImagePreviewContainer" style="display: none; margin-top: 10px;">
-                                            <img id="banner_image_preview" src="" alt="Preview" class="img-fluid" style="max-height: 200px; border: 1px solid #ddd; padding: 5px;">
+                                            <!-- Video Preview Container -->
+                                            <div id="videoPreviewContainer" class="mt-2" style="display: none;">
+                                                <label class="form-label">Preview:</label>
+                                                <video id="videoPreview" autoplay muted loop controls width="100%" style="border: 1px solid #ccc; border-radius: 5px;"></video>
+                                            </div>
                                         </div>
-                                    </div>
 
+                                        <hr>
 
-                                     <!-- Image Upload -->
-                                     <div class="col-md-6">
-                                        <label class="form-label" for="banner_image2">Image 2<span class="txt-danger">*</span></label>
-                                        <input class="form-control" id="banner_image2" type="file" name="banner_image2" accept=".jpg, .jpeg, .png, .webp" required onchange="previewImage()">
-                                        <div class="invalid-feedback">Please upload an image.</div>
-                                        <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
-                                        <br>
-                                        <small class="text-secondary"><b>Only .jpg, .jpeg, .png, .webp formats are allowed.</b></small>
+                                        <h3># Innovation Section</h3>
 
-                                        <!-- Preview Section (Moved here) -->
-                                        <div id="ImagePreviewContainer" style="display: none; margin-top: 10px;">
-                                            <img id="image_preview" src="" alt="Preview" class="img-fluid" style="max-height: 200px; border: 1px solid #ddd; padding: 5px;">
+                                        <!-- Section Heading -->
+                                        <div class="col-md-6">
+                                            <label class="form-label" for="section_heading">Section Heading <span class="txt-danger">*</span></label>
+                                            <input class="form-control" id="section_heading" type="text" name="section_heading" placeholder="Enter Section Heading" value="{{ old('section_heading') }}" required>
+                                            <div class="invalid-feedback">Please enter a Section Heading.</div>
                                         </div>
-                                    </div>
 
 
-                                    <!-- Description -->
-                                    <div class="col-md-12" style="margin-bottom: 20px;">
-                                        <label class="form-label" for="description">Description <span class="txt-danger">*</span></label>
-                                        <textarea id="summernote" class="form-control" name="description" rows="5" placeholder="Enter Description here" required >{{ old('description') }}</textarea>
-                                        <div class="invalid-feedback">Please enter Description here.</div>
-                                    </div>
+                                        <!-- Image Upload -->
+                                        <div class="col-md-6">
+                                            <label class="form-label" for="banner_image">Image <span class="txt-danger">*</span></label>
+                                            <input class="form-control" id="banner_image" type="file" name="banner_image" accept=".jpg, .jpeg, .png, .webp" required onchange="previewBannerImage()">
+                                            <div class="invalid-feedback">Please upload an image.</div>
+                                            <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
+                                            <br>
+                                            <small class="text-secondary"><b>Only .jpg, .jpeg, .png, .webp formats are allowed.</b></small>
+
+                                            <!-- Preview Section (Moved here) -->
+                                            <div id="bannerImagePreviewContainer" style="display: none; margin-top: 10px;">
+                                                <img id="banner_image_preview" src="" alt="Preview" class="img-fluid" style="max-height: 200px; border: 1px solid #ddd; padding: 5px;">
+                                            </div>
+                                        </div>
 
 
-                                    <!-- Banner Details table -->
-                                    <div class="table-container mb-4" style="margin-bottom: 20px;">
-                                        <h5 class="mb-4"><strong>#Details</strong></h5>
-                                        <table class="table table-bordered p-3" id="printsTable" style="border: 2px solid #dee2e6;">
-                                            <thead>
-                                                <tr>
-                                                    <th>Title <span class="txt-danger">*</span></th>
-                                                    <th>Count <span class="txt-danger">*</span></th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @php
-                                                    $oldEntries = old('banner_items', [['name' => '', 'description' => '']]);
-                                                @endphp
+                                        <!-- Image Upload -->
+                                        <div class="col-md-6">
+                                            <label class="form-label" for="banner_image2">Image 2<span class="txt-danger">*</span></label>
+                                            <input class="form-control" id="banner_image2" type="file" name="banner_image2" accept=".jpg, .jpeg, .png, .webp" required onchange="previewImage()">
+                                            <div class="invalid-feedback">Please upload an image.</div>
+                                            <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
+                                            <br>
+                                            <small class="text-secondary"><b>Only .jpg, .jpeg, .png, .webp formats are allowed.</b></small>
 
-                                                @foreach ($oldEntries as $index => $entry)
-                                                <tr>
-                                                    <td>
-                                                        <input type="text" name="banner_items[{{ $index }}][name]" class="form-control" placeholder="Enter Name" value="{{ $entry['name'] ?? '' }}" required>
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" name="banner_items[{{ $index }}][count]" class="form-control" placeholder="Enter Count" value="{{ $entry['count'] ?? '' }}" required>
-                                                    </td>
-                                                    <td>
-                                                        @if($loop->first)
-                                                            <button type="button" class="btn btn-primary" id="addPrintRow">Add More</button>
-                                                        @else
-                                                            <button type="button" class="btn btn-danger removePrintRow">Remove</button>
-                                                        @endif
-                                                    </td>
-                                                </tr>
+                                            <!-- Preview Section (Moved here) -->
+                                            <div id="ImagePreviewContainer" style="display: none; margin-top: 10px;">
+                                                <img id="image_preview" src="" alt="Preview" class="img-fluid" style="max-height: 200px; border: 1px solid #ddd; padding: 5px;">
+                                            </div>
+                                        </div>
 
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
 
-                                                   
+                                        <!-- Description -->
+                                        <div class="col-md-12" style="margin-bottom: 20px;">
+                                            <label class="form-label" for="description">Description <span class="txt-danger">*</span></label>
+                                            <textarea id="summernote" class="form-control" name="description" rows="5" placeholder="Enter Description here" required >{{ old('description') }}</textarea>
+                                            <div class="invalid-feedback">Please enter Description here.</div>
+                                        </div>
 
-                                    <!-- Form Actions -->
-                                    <div class="col-12 text-end">
-                                        <a href="{{ route('home-banner.index') }}" class="btn btn-danger px-4">Cancel</a>
-                                        <button class="btn btn-primary" type="submit">Submit</button>
-                                    </div>
-                                </form>
+
+                                        <!-- Banner Details table -->
+                                        <div class="table-container mb-4" style="margin-bottom: 20px;">
+                                            <h5 class="mb-4"><strong>#Details</strong></h5>
+                                            <table class="table table-bordered p-3" id="printsTable" style="border: 2px solid #dee2e6;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Title <span class="txt-danger">*</span></th>
+                                                        <th>Count <span class="txt-danger">*</span></th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @php
+                                                        $oldEntries = old('banner_items', [['name' => '', 'description' => '']]);
+                                                    @endphp
+
+                                                    @foreach ($oldEntries as $index => $entry)
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" name="banner_items[{{ $index }}][name]" class="form-control" placeholder="Enter Name" value="{{ $entry['name'] ?? '' }}" required>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="banner_items[{{ $index }}][count]" class="form-control" placeholder="Enter Count" value="{{ $entry['count'] ?? '' }}" required>
+                                                        </td>
+                                                        <td>
+                                                            @if($loop->first)
+                                                                <button type="button" class="btn btn-primary" id="addPrintRow">Add More</button>
+                                                            @else
+                                                                <button type="button" class="btn btn-danger removePrintRow">Remove</button>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                                    
+
+                                        <!-- Form Actions -->
+                                        <div class="col-12 text-end">
+                                            <a href="{{ route('home-banner.index') }}" class="btn btn-danger px-4">Cancel</a>
+                                            <button class="btn btn-primary" type="submit">Submit</button>
+                                        </div>
+                                    </form>
 
 
                                 </div>
@@ -200,8 +200,8 @@
                 const videoElement = document.getElementById('videoPreview');
 
                 if (file) {
-                    if (file.size > 6 * 1024 * 1024) {
-                        alert("File size exceeds 6MB. Please upload a smaller video.");
+                    if (file.size > 4 * 1024 * 1024) {
+                        alert("File size exceeds 4MB. Please upload a smaller video.");
                         this.value = '';
                         previewContainer.style.display = 'none';
                         videoElement.src = '';
