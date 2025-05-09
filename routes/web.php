@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\Backend\HomeBannerDetailsController;
 use App\Http\Controllers\Backend\ProjectsController;
+use App\Http\Controllers\Backend\PartnersController;
 
 // Route::get('/', function () {
 //     return view('frontend.home');
@@ -29,5 +30,8 @@ Route::group(['middleware' => ['auth:web', \App\Http\Middleware\PreventBackHisto
 // ==== Manage Banner Details in Home
 Route::resource('home-banner', HomeBannerDetailsController::class);
 
-// ==== Manage Banner Details in Home
+// ==== Manage Project Details in Home
 Route::resource('manage-projects', ProjectsController::class);
+
+// ==== Manage Partners Details in Home
+Route::resource('manage-clientele', PartnersController::class);

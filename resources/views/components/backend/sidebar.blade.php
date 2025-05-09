@@ -55,7 +55,8 @@
                     <li><a href="{{ route('home-banner.index') }}">Banner & Innovation</a></li>
                     <li><a href="{{ route('home-banner.index') }}">Service</a></li>
                     <li><a href="{{ route('manage-projects.index') }}">Our Projects</a></li>
-                    <li><a href="{{ route('home-banner.index') }}">Clientele & Associates</a></li>
+                    <li><a href="{{ route('manage-clientele.index') }}">Clientele</a></li>
+                    <li><a href="{{ route('manage-clientele.index') }}">Associates</a></li>
                   </ul>
                 </li>
 
