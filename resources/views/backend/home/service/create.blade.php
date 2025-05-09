@@ -17,14 +17,14 @@
             <div class="page-title">
               <div class="row">
                 <div class="col-6">
-                  <h4>Add Banner Form</h4>
+                  <h4>Add Service Form</h4>
                 </div>
                 <div class="col-6">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                     <a href="{{ route('manage-home-services.index') }}">Home</a>
                     </li>
-                    <li class="breadcrumb-item active">Add Banner</li>
+                    <li class="breadcrumb-item active">Add Service</li>
                 </ol>
 
                 </div>
@@ -37,7 +37,7 @@
                 <div class="col-md-12">
                     <div class="card">
                     <div class="card-header">
-                        <h4>Banner Form</h4>
+                        <h4>Service Form</h4>
                         <p class="f-m-light mt-1">Fill up your true details and submit the form.</p>
                     </div>
                     <div class="card-body">
