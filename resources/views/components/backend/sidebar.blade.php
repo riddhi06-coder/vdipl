@@ -61,7 +61,7 @@
                     </svg><span>Home</span></a>
                   <ul class="sidebar-submenu">
                     <li><a href="{{ route('home-banner.index') }}">Banner & Innovation</a></li>
-                    <li><a href="{{ route('home-banner.index') }}">Service</a></li>
+                    <li><a href="{{ route('manage-home-services.index') }}">Service</a></li>
                     <li><a href="{{ route('manage-projects.index') }}">Our Projects</a></li>
                     <li><a href="{{ route('manage-clientele.index') }}">Clientele</a></li>
                     <li><a href="{{ route('manage-associates.index') }}">Associates</a></li>
