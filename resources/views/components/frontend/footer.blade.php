@@ -15,7 +15,7 @@
                   <li><a href="{{ route('about.us') }}">About Us</a></li>
                   <li><a href="#">Services</a></li>
                   <li><a href="projects.html">Projects</a></li>
-                  <li><a href="our-assets.html">Our Assesets</a></li>
+                  <li><a href="{{ route('our.assets') }}">Our Assesets</a></li>
                   <li><a href="careers.html">Careers</a></li>
                   <li><a href="contact.html">Contact</a></li>
                 </ul>

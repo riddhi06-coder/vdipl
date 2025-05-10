@@ -19,6 +19,7 @@ use App\Models\Clientele;
 use App\Models\Associates; 
 use App\Models\About;
 use App\Models\Leadership;
+use App\Models\Assets;
 
 use Carbon\Carbon;
 
@@ -58,6 +59,12 @@ class HomeController extends Controller
     {
         $leadership = Leadership::whereNull('deleted_by')->get();
         return view('frontend.leadership', compact('leadership'));
+    }
+
+    public function assets()
+    {
+        $assets = Assets::whereNull('deleted_by')->first();
+        return view('frontend.assets', compact('assets'));
     }
 
 }
