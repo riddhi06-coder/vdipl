@@ -83,5 +83,6 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::get('/about-us', [HomeController::class, 'about_us'])->name('about.us');
     Route::get('/our-leadership', [HomeController::class, 'leadership'])->name('our.leadership');
     Route::get('/our-assets', [HomeController::class, 'assets'])->name('our.assets');
+    Route::get('/services/{slug}', [HomeController::class, 'service'])->name('services');
    
 });

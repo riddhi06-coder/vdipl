@@ -54,19 +54,22 @@
                       </ul>
                     </div>
                   </li>
+                  @php
+                      use App\Models\Service;
+                      $services = Service::whereNull('deleted_by')->get();
+                  @endphp
+
                   <li class="menu-item-has-children">
-                    <a href="#">Services  <i class="fa fa-angle-down"></i></a>
+                    <a href="#">Services <i class="fa fa-angle-down"></i></a>
                     <div class="sub-menu single-column-menu">
                       <ul>
-                        <li><a href="road-urban-utilitie.html">Road Construction & Urban Utilities</a></li>
-                        <li><a href="#">Earthwork Projects</a></li>
-                        <li><a href="#">Warehouse Construction</a></li>
-                        <li><a href="#">Ready Mix Concrete</a></li>
-                        <li><a href="#">Quarrying & Crusher Operations</a></li>
-                        <li><a href="#">Asphalt and Bitumen Mixing </a></li>
+                        @foreach($services as $service)
+                          <li><a href="{{ route('services', $service->slug) }}">{{ $service->service }}</a></li>
+                        @endforeach
                       </ul>
                     </div>
                   </li>
+
                   <li><a href="projects.html">Projects</a></li>
                   <li><a href="{{ route('our.assets') }}">Our Assesets</a></li>
                   <li><a href="careers.html">Careers</a></li>

@@ -20,6 +20,8 @@ use App\Models\Associates;
 use App\Models\About;
 use App\Models\Leadership;
 use App\Models\Assets;
+use App\Models\ServiceIntro;
+use App\Models\ServiceChoose;
 
 use Carbon\Carbon;
 
@@ -66,5 +68,25 @@ class HomeController extends Controller
         $assets = Assets::whereNull('deleted_by')->first();
         return view('frontend.assets', compact('assets'));
     }
+
+    public function service($slug)
+    {
+        $service = Service::where('slug', $slug)->whereNull('deleted_by')->firstOrFail();
+        
+        $intro = ServiceIntro::where('service_id', $service->id)->whereNull('deleted_by')->first();
+        $choose = ServiceChoose::where('service_id', $service->id)->whereNull('deleted_by')->first();
+        
+        $bannerTitles = json_decode($intro->banner_titles, true);
+        $bannerDescriptions = json_decode($intro->banner_descriptions, true);
+        $bannerImages = json_decode($intro->banner_images, true);
+
+        $bannerchooseTitles = json_decode($choose->banner_titles, true);
+        $bannerchooseDescriptions = json_decode($choose->banner_descriptions, true);
+        $bannerchooseImages = json_decode($choose->banner_images, true);
+    
+        return view('frontend.service-details', compact('intro', 'service', 'bannerTitles', 'bannerDescriptions', 'bannerImages','choose',
+                    'bannerchooseTitles', 'bannerchooseDescriptions', 'bannerchooseImages'));
+    }
+    
 
 }

@@ -22,14 +22,17 @@
               </div>
               <div class="col-6">
             <h2 class="useful-link-text">Services</h2>
-                <ul class="usefulLinks-List">
-                   <li><a href="road-urban-utilitie.html">Road Construction & Urban Utilities</a></li>
-                        <li><a href="#">Earthwork Projects</a></li>
-                        <li><a href="#">Warehouse Construction</a></li>
-                        <li><a href="#">Ready Mix Concrete</a></li>
-                        <li><a href="#">Quarrying & Crusher Operations</a></li>
-                        <li><a href="#">Asphalt and Bitumen Mixing </a></li>
-                </ul>
+              <ul class="usefulLinks-List">
+                  @php
+                      use App\Models\Service;
+                      $services = Service::whereNull('deleted_by')->get();
+                  @endphp
+
+                  @foreach($services as $service)
+                      <li><a href="{{ route('services', $service->slug) }}">{{ $service->service }}</a></li>
+                  @endforeach
+              </ul>
+
               </div>
             </div>
           </div>
