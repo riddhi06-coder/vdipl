@@ -78,7 +78,7 @@
                     </svg><span>About Us</span></a>
                   <ul class="sidebar-submenu">
                     <li><a href="{{ route('manage-about.index') }}">About Us</a></li>
-                    <li><a href="{{ route('manage-home-services.index') }}">Leadership</a></li>
+                    <li><a href="{{ route('manage-leadership.index') }}">Leadership</a></li>
                   </ul>
                 </li>
 
