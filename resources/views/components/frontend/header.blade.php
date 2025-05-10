@@ -45,7 +45,7 @@
                 <ul class="menu-main">
                   <li><a href="{{ route('home.page') }}">Home</a></li>
                  <li class="menu-item-has-children">
-                    <a href="about.html">About Us  <i class="fa fa-angle-down"></i></a>
+                    <a href="{{ route('about.us') }}">About Us  <i class="fa fa-angle-down"></i></a>
                     <div class="sub-menu single-column-menu">
                       <ul>
                         

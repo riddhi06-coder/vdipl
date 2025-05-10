@@ -12,7 +12,7 @@
             <h2 class="useful-link-text">Useful Links</h2>
                 <ul class="usefulLinks-List">
                   <li><a href="{{ route('home.page') }}">Home</a></li>
-                  <li><a href="about.html">About Us</a></li>
+                  <li><a href="{{ route('about.us') }}">About Us</a></li>
                   <li><a href="#">Services</a></li>
                   <li><a href="projects.html">Projects</a></li>
                   <li><a href="our-assets.html">Our Assesets</a></li>

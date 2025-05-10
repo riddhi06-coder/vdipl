@@ -180,7 +180,7 @@ class AboutController extends Controller
             'banner_items.*.description' => 'required|string',
             'section_heading3' => 'required|string|max:255',
             'items.*.name' => 'required|string|max:255',
-            'items.*.image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'items.*.image' => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
             'items.*.description' => 'required|string',
         ]);
 

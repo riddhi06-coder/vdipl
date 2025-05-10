@@ -71,5 +71,6 @@ Route::resource('manage-about', AboutController::class);
 Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHistoryMiddleware::class]],function(){
 
     Route::get('/', [HomeController::class, 'index'])->name('home.page');
+    Route::get('/about-us', [HomeController::class, 'about_us'])->name('about.us');
    
 });

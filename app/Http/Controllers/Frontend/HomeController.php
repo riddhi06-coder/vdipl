@@ -17,6 +17,7 @@ use App\Models\Service;
 use App\Models\HomeProjects;
 use App\Models\Clientele; 
 use App\Models\Associates; 
+use App\Models\About;
 
 use Carbon\Carbon;
 
@@ -34,7 +35,22 @@ class HomeController extends Controller
 
         return view('frontend.home', compact('banner', 'homeServices', 'services', 'projects', 'clientele','associates'));
     }
-    
-    
+
+    public function about_us()
+    {
+        $about = About::whereNull('deleted_by')->latest()->first();
+
+        // Decode vision and mission data
+        $about->vision_names = json_decode($about->vision_mission_names, true);
+        $about->vision_images = json_decode($about->vision_mission_images, true);
+        $about->vision_descriptions = json_decode($about->vision_mission_descriptions, true);
+
+        // Decode core values data
+        $about->core_values_names = json_decode($about->core_values_names, true);
+        $about->core_values_images = json_decode($about->core_values_images, true);
+        $about->core_values_descriptions = json_decode($about->core_values_descriptions, true);
+
+        return view('frontend.about', compact('about'));
+    }
 
 }
