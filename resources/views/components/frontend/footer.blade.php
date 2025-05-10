@@ -2,7 +2,7 @@
       <div class="container">
         <div class="row">
           <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12">
-            <a href="index.html"><img src="images/home/vdipl-footer-logo.webp" alt="footer-logo"></a>
+            <a href="{{ route('home.page') }}"><img src="{{ asset('frontend/assets/images/home/vdipl-footer-logo.webp') }}" alt="footer-logo"></a>
             <p class="morbi">VAIBHAVDESHMUKH INFRAPROJECTS PVT LTD (VDIPL) was founded in 2007 under the visionary leadership of Mr. Vaibhav Deshmukh, who relentlessly pursued his dream to create an enterprise that would leave a lasting impact on India’s infrastructure landscape. Initially established as M/s Vaibhav Construction, the company has since evolved into VDIPL, a trusted name in the industry.
             </p>
           </div> 
@@ -11,7 +11,7 @@
               <div class="col-6">
             <h2 class="useful-link-text">Useful Links</h2>
                 <ul class="usefulLinks-List">
-                  <li><a href="index.html">Home</a></li>
+                  <li><a href="{{ route('home.page') }}">Home</a></li>
                   <li><a href="about.html">About Us</a></li>
                   <li><a href="#">Services</a></li>
                   <li><a href="projects.html">Projects</a></li>
@@ -37,7 +37,7 @@
             <h2 class="useful-link-text">Contact Us</h2>
             <div class="head-phone-white-main">
               <div class="headphone-white">
-                <img src="images/icons/contact/webp/phone-white.webp" alt="headphone-white">
+                <img src="{{ asset('frontend/assets/images//icons/contact/webp/phone-white.webp') }}" alt="headphone-white">
               </div>
               <div>
                 <p class="CallUs">Call Us</p>
@@ -48,7 +48,7 @@
             </div>
             <div class="head-phone-white-main">
               <div class="headphone-white">
-                <img src="images/icons/contact/webp/email-white.webp" alt="email-White">
+                <img src="{{ asset('frontend/assets/images//icons/contact/webp/email-white.webp') }}" alt="email-White">
               </div>
               <div>
                 <p class="CallUs">Email Us</p>
@@ -59,7 +59,7 @@
             </div>
             <div class="head-phone-white-main">
               <div class="headphone-white">
-                <img src="images/icons/contact/webp/maps-white.webp" alt="loaction-white">
+                <img src="{{ asset('frontend/assets/images//icons/contact/webp/maps-white.webp') }}" alt="loaction-white">
               </div>
               <div>
                 <p class="CallUs">Find Us</p>

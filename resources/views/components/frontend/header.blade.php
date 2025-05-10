@@ -16,8 +16,8 @@
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
               <div class="topbar-info">
                 <ul>
-                  <li><img src="images/icons/contact/webp/phone-white.webp"> <a href="tel:+91 22 27454244">+91 22 27454244</a></li>
-                  <li><img src="images/icons/contact/webp/email-white.webp"> <a href="mailto:info@vdipl.in">info@vdipl.in</a></li>
+                  <li><img src="{{ asset('frontend/assets/images/icons/contact/webp/phone-white.webp') }}"> <a href="tel:+91 22 27454244">+91 22 27454244</a></li>
+                  <li><img src="{{ asset('frontend/assets/images/icons/contact/webp/email-white.webp') }}"> <a href="mailto:info@vdipl.in">info@vdipl.in</a></li>
                 </ul>
               </div>
             </div>
@@ -30,7 +30,7 @@
           <div class="row v-center">
             <div class="header-item item-left">
               <div class="logo">
-                <a href="index.html"><img src="images/home/vdipl-logo.webp"></a>
+                <a href="index.html"><img src="{{ asset('frontend/assets/images/home/vdipl-logo.webp') }}"></a>
               </div>
             </div>
             <!-- menu start here -->
@@ -43,7 +43,7 @@
                   <div class="mobile-menu-close">×</div>
                 </div>
                 <ul class="menu-main">
-                  <li><a href="index.html">Home</a></li>
+                  <li><a href="{{ route('home.page') }}">Home</a></li>
                  <li class="menu-item-has-children">
                     <a href="about.html">About Us  <i class="fa fa-angle-down"></i></a>
                     <div class="sub-menu single-column-menu">

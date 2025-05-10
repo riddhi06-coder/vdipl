@@ -63,7 +63,7 @@
                                         <!-- Location -->
                                         <div class="col-md-6">
                                             <label class="form-label" for="location">Location <span class="txt-danger">*</span></label>
-                                            <input class="form-control" id="location" type="text" name="location" placeholder="Enter Location" value="{{ old('location', $details->banner_heading) }}" required>
+                                            <input class="form-control" id="location" type="text" name="location" placeholder="Enter Location" value="{{ old('location', $details->location) }}" required>
                                             <div class="invalid-feedback">Please enter a Location.</div>
                                         </div>
 
@@ -71,7 +71,7 @@
                                         <!-- Cost -->
                                         <div class="col-md-6">
                                             <label class="form-label" for="cost">Cost <span class="txt-danger">*</span></label>
-                                            <input class="form-control" id="cost" type="text" name="cost" placeholder="Enter Cost" value="{{ old('cost', $details->banner_heading) }}" required>
+                                            <input class="form-control" id="cost" type="text" name="cost" placeholder="Enter Cost" value="{{ old('cost', $details->cost) }}" required>
                                             <div class="invalid-feedback">Please enter a Cost.</div>
                                         </div>
 
