@@ -68,6 +68,20 @@
                   </ul>
                 </li>
 
+
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
+                    <svg class="stroke-icon"> 
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-file') }}"></use>
+                    </svg>
+                    <svg class="fill-icon">
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-file') }}"></use>
+                    </svg><span>About Us</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="{{ route('manage-about.index') }}">About Us</a></li>
+                    <li><a href="{{ route('manage-home-services.index') }}">Leadership</a></li>
+                  </ul>
+                </li>
+
               </ul>
               <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
             </div>

@@ -10,6 +10,9 @@ use App\Http\Controllers\Backend\PartnersController;
 use App\Http\Controllers\Backend\AssociateController;
 use App\Http\Controllers\Backend\ServicesController;
 use App\Http\Controllers\Backend\HomeServicesController;
+use App\Http\Controllers\Backend\AboutController;
+
+
 
 use App\Http\Controllers\Frontend\HomeController;
 
@@ -49,6 +52,19 @@ Route::resource('manage-home-services', HomeServicesController::class);
 
 // ==== Manage services in Home
 Route::resource('manage-services', ServicesController::class);
+
+// ==== Manage About Us in Home
+Route::resource('manage-about', AboutController::class);
+
+
+
+
+
+
+
+
+
+
 
 // ===================================================================Frontend================================================================
 
