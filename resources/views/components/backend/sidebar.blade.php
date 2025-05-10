@@ -70,7 +70,7 @@
                       </a>
                       <ul class="nav-sub-childmenu submenu-content">
                         <li><a href="{{ route('manage-service-intro.index') }}" class="{{ request()->routeIs('manage-service-intro.index') ? 'active' : '' }}">Introduction</a></li>
-                        <li><a href="{{ route('manage-service-intro.index') }}" class="{{ request()->routeIs('manage-service-intro.index') ? 'active' : '' }}">Why Choose</a></li>
+                        <li><a href="{{ route('manage-service-whychoose.index') }}" class="{{ request()->routeIs('manage-service-whychoose.index') ? 'active' : '' }}">Why Choose</a></li>
                       </ul>
                     </li>
 
