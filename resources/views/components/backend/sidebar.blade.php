@@ -32,6 +32,7 @@
                     <h6 class="lan-1">General</h6>
                   </div>
                 </li>
+
                 <li class="sidebar-list"><i class="fa fa-thumb-tack"> </i>
                   <a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.dashboard') }}">
                     <svg class="stroke-icon">
@@ -43,13 +44,37 @@
                   </a>
                 </li>
 
-                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="{{ route('manage-services.index') }}">
+
+                <li class="sidebar-list {{ request()->is('manage-services*','manage-service-details.index*') ? 'active' : '' }}">
+                  <i class="fa fa-thumb-tack"> </i>
+                  <a class="sidebar-link sidebar-title" href="#">
                     <svg class="stroke-icon"> 
-                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-sample-page') }}"></use>
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#cart') }}"></use>
                     </svg>
                     <svg class="fill-icon">
-                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-sample-page') }}"></use>
-                    </svg><span>Service</span></a>
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#cart') }}"></use>
+                    </svg>
+                    <span>Service</span>
+                  </a>
+                  <ul class="sidebar-submenu">
+                    <li>
+                      <a href="{{ route('manage-services.index') }}" class="{{ request()->routeIs('manage-services.index') ? 'active' : '' }}">
+                      Service
+                      </a>
+                    </li>
+
+                    <li>
+                      <a class="submenu-title" href="#">
+                      Service Details
+                        <span class="sub-arrow"><i class="fa fa-angle-right"></i></span>
+                      </a>
+                      <ul class="nav-sub-childmenu submenu-content">
+                        <li><a href="{{ route('manage-service-intro.index') }}" class="{{ request()->routeIs('manage-service-intro.index') ? 'active' : '' }}">Introduction</a></li>
+                        <li><a href="{{ route('manage-service-intro.index') }}" class="{{ request()->routeIs('manage-service-intro.index') ? 'active' : '' }}">Why Choose</a></li>
+                      </ul>
+                    </li>
+
+                  </ul>
                 </li>
 
                 <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">

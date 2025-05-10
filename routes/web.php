@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\HomeServicesController;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\LeadershipController;
 use App\Http\Controllers\Backend\AssetsController;
+use App\Http\Controllers\Backend\ServiceDetailsController;
 
 use App\Http\Controllers\Frontend\HomeController;
 
@@ -59,10 +60,11 @@ Route::resource('manage-about', AboutController::class);
 // ==== Manage Leadership Us
 Route::resource('manage-leadership', LeadershipController::class);
 
-// ==== Manage Assets Us
+// ==== Manage Assets
 Route::resource('manage-assets', AssetsController::class);
 
-
+// ==== Manage Service
+Route::resource('manage-service-intro', ServiceDetailsController::class);
 
 
 
