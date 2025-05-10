@@ -18,6 +18,7 @@ use App\Models\HomeProjects;
 use App\Models\Clientele; 
 use App\Models\Associates; 
 use App\Models\About;
+use App\Models\Leadership;
 
 use Carbon\Carbon;
 
@@ -51,6 +52,12 @@ class HomeController extends Controller
         $about->core_values_descriptions = json_decode($about->core_values_descriptions, true);
 
         return view('frontend.about', compact('about'));
+    }
+
+    public function leadership()
+    {
+        $leadership = Leadership::whereNull('deleted_by')->get();
+        return view('frontend.leadership', compact('leadership'));
     }
 
 }

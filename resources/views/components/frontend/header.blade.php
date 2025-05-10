@@ -49,7 +49,7 @@
                     <div class="sub-menu single-column-menu">
                       <ul>
                         
-                        <li><a href="Our-Leadership.html">Our Leadership</a></li>
+                        <li><a href="{{ route('our.leadership') }}">Our Leadership</a></li>
                        
                       </ul>
                     </div>
