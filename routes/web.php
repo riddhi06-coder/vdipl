@@ -12,7 +12,7 @@ use App\Http\Controllers\Backend\ServicesController;
 use App\Http\Controllers\Backend\HomeServicesController;
 use App\Http\Controllers\Backend\AboutController;
 use App\Http\Controllers\Backend\LeadershipController;
-
+use App\Http\Controllers\Backend\AssetsController;
 
 use App\Http\Controllers\Frontend\HomeController;
 
@@ -50,14 +50,17 @@ Route::resource('manage-associates', AssociateController::class);
 // ==== Manage Home Services in Home
 Route::resource('manage-home-services', HomeServicesController::class);
 
-// ==== Manage services in Home
+// ==== Manage services
 Route::resource('manage-services', ServicesController::class);
 
-// ==== Manage About Us in Home
+// ==== Manage About Us
 Route::resource('manage-about', AboutController::class);
 
-// ==== Manage Leadership Us in Home
+// ==== Manage Leadership Us
 Route::resource('manage-leadership', LeadershipController::class);
+
+// ==== Manage Assets Us
+Route::resource('manage-assets', AssetsController::class);
 
 
 
