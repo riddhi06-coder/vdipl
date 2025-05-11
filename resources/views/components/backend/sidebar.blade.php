@@ -125,6 +125,19 @@
                     </svg><span>Our Assets</span></a>
                 </li>
 
+                <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
+                    <svg class="stroke-icon"> 
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#expense') }}"></use>
+                    </svg>
+                    <svg class="fill-icon">
+                      <use href="{{ asset('admin/assets/svg/icon-sprite.svg#expense') }}"></use>
+                    </svg><span>Careers</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="{{ route('manage-career-intro.index') }}">Introduction</a></li>
+                    <li><a href="{{ route('manage-career-intro.index') }}">Job Details</a></li>
+                  </ul>
+                </li>
+
                 <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="{{ route('manage-contact.index') }}">
                     <svg class="stroke-icon"> 
                       <use href="{{ asset('admin/assets/svg/icon-sprite.svg#stroke-contact') }}"></use>
