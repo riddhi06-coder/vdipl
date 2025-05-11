@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\AssetsController;
 use App\Http\Controllers\Backend\ServiceDetailsController;
 use App\Http\Controllers\Backend\ServiceChooseController;
 use App\Http\Controllers\Backend\ProjectController;
+use App\Http\Controllers\Backend\ContactController;
 
 use App\Http\Controllers\Frontend\HomeController;
 
@@ -74,7 +75,8 @@ Route::resource('manage-service-whychoose', ServiceChooseController::class);
 // ==== Manage Projects
 Route::resource('projects-details', ProjectController::class);
 
-
+// ==== Manage Contact
+Route::resource('manage-contact', ContactController::class);
 
 
 
