@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 
 use App\Models\CareerIntro;
+use App\Models\Job;
 
 use Carbon\Carbon;
 
@@ -21,6 +22,7 @@ class CareersController extends Controller
     public function career()
     {
         $career = CareerIntro::whereNull('deleted_by')->latest()->first();
-        return view('frontend.careers', compact('career'));
+        $job = Job::whereNull('deleted_by')->get();
+        return view('frontend.careers', compact('career','job'));
     }
 }

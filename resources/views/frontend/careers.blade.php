@@ -58,64 +58,41 @@
     <section class="openings-section">
         <div class="container122">
             <div class="header">
-            <h1>Current Openings</h1>
-            <div class="search-bar">
-                <input type="text" placeholder="Search for a job title..." />
-                <button><i class="fa fa-search" ></i></button>
-            </div>
+                <h1>{{ $job->first()->section_heading }}</h1>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for a job title..." />
+                    <button><i class="fa fa-search"></i></button>
+                </div>
             </div>
 
+            @forelse($job as $item)
             <div class="job-card">
-            <div class="job-info">
-                <h2>Project Manager</h2>
-                <p class="location" style="margin:8px 8px 8px 0px;"><i class="fa-solid fa-clock" style="color: #813b3a;"></i> <strong>Full Time</strong> </p>
-                <p class="location">
-                <i class="fa-solid fa-location-dot" style="color: #813b3a;"></i> <strong>Location</strong> - Vishrali Naka, Panvel - 410 206.
-                </p>
-                <!--<p class="description">-->
-                <!-- Lead construction projects from planning through execution. Ensure quality, budget, and schedule compliance across road construction, earthwork, and infrastructure development projects. Manage teams, coordinate with clients, and maintain high safety and quality standards.-->
-                <!--</p>-->
+                <div class="job-info">
+                    <h2>{{ $item->job_role }}</h2>
+                    <p class="location" style="margin:8px 8px 8px 0px;">
+                        <i class="fa-solid fa-clock" style="color: #813b3a;"></i> 
+                        <strong>{{ $item->job_type }}</strong>
+                    </p>
+                    <p class="location">
+                        <i class="fa-solid fa-location-dot" style="color: #813b3a;"></i> 
+                        <strong>Location</strong> - {{ $item->job_location }}
+                    </p>
+                    {{-- Uncomment if you want to display a job summary --}}
+                    {{-- <p class="description">{{ $item->summary }}</p> --}}
+                </div>
+                <div class="job-actions">
+                    @if($item->job_description)
+                    <a href="{{ asset('uploads/career/' . $item->job_description) }}" class="btn-outline" download>Download</a>
+                    @endif
+                    <a href="javascript:void(0);" class="btn-primary" onclick="openModal()">Apply Now</a>
+                </div>
             </div>
-            <div class="job-actions">
-                <a href="#" class="btn-outline">Download</a>
-                <a href="javascript:void(0);" class="btn-primary" onclick="openModal()">Apply Now</a>
-            </div>
-            </div>
-            <div class="job-card">
-            <div class="job-info">
-                <h2>Site Engineer </h2>
-                <p class="location" style="margin:8px 8px 8px 0px;"><i class="fa-solid fa-clock" style="color: #813b3a;"></i> <strong>Full Time</strong> </p>
-                <p class="location">
-                <i class="fa-solid fa-location-dot" style="color: #813b3a;"></i> <strong>Location</strong> - Vishrali Naka, Panvel - 410 206.
-                </p>
-                <!--<p class="description">-->
-                <!-- Supervise daily site operations, monitor construction activities, and ensure all tasks are completed according to design and technical specifications. Collaborate with Project Managers, contractors, and vendors to deliver successful infrastructure projects.-->
-                <!--</p>-->
-            </div>
-            <div class="job-actions">
-                <a href="#" class="btn-outline">Download</a>
-                <a href="javascript:void(0);" class="btn-primary" onclick="openModal()">Apply Now</a>
-            </div>
-            </div>
-            <div class="job-card">
-            <div class="job-info">
-                <h2>Safety Officer</h2>
-                <p class="location" style="margin:8px 8px 8px 0px;"><i class="fa-solid fa-clock" style="color: #813b3a;"></i> <strong>Full Time</strong> </p>
-                <p class="location">
-                <i class="fa-solid fa-location-dot" style="color: #813b3a;"></i> <strong>Location</strong> - Vishrali Naka, Panvel - 410 206.
-                </p>
-                <!--<p class="description">-->
-                <!-- Implement and enforce workplace safety policies at construction sites. Conduct regular safety audits, training sessions, and ensure compliance with regulatory and project-specific safety standards to protect workers and equipment.-->
-                <!--</p>-->
-            </div>
-            <div class="job-actions">
-                <a href="#" class="btn-outline">Download</a>
-                <a href="javascript:void(0);" class="btn-primary" onclick="openModal()">Apply Now</a>
-            
-            </div>
-            </div>
+            @empty
+            <p>No job openings available right now.</p>
+            @endforelse
         </div>
     </section>
+
 
     <section class="join-us">
         <div class="container1231">
