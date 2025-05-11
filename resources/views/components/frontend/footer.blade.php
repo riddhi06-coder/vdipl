@@ -42,10 +42,14 @@
               <div class="headphone-white">
                 <img src="{{ asset('frontend/assets/images//icons/contact/webp/phone-white.webp') }}" alt="headphone-white">
               </div>
+
+              @php
+                  $contact = \App\Models\Contact::latest()->first(); // Adjust query if needed
+              @endphp
               <div>
                 <p class="CallUs">Call Us</p>
-                <a href="tel:+91 22 27454244 " class="CallUs-phone">
-                  +91 22 27454244 
+                <a href="tel:+91 {{ $contact->phone }} " class="CallUs-phone">
+                  +91 {{ $contact->phone }} 
                 </a>
               </div>
             </div>
@@ -55,8 +59,8 @@
               </div>
               <div>
                 <p class="CallUs">Email Us</p>
-                <a href="mailto:info@vdipl.in" class="CallUs-phone">
-                  info@vdipl.in
+                <a href="mailto:{{ $contact->email }}" class="CallUs-phone">
+                  {{ $contact->email }}
                 </a>
               </div>
             </div>
@@ -66,7 +70,7 @@
               </div>
               <div>
                 <p class="CallUs">Find Us</p>
-                <p class="CallUs-phone">Office No. B3- B4, 1st Floor, Bldg. No. 7B, Dwarkamai, Gurusharnam Complex, Vishrali Naka, <br>Panvel - 410 206.</p>
+                <p class="CallUs-phone">{!! $contact->address !!}</p>
               </div>
             </div>
           </div>
@@ -79,30 +83,38 @@
         <div class="rights-reserved">
           <h2>
             <div id="copyright">
-                Copyright © 2024 VDIPL. All rights reserved. Designed By <a href="http://www.matrixbricks.com" target="_blank">Matrix Bricks</a></div>
+                Copyright © <?php echo date('Y'); ?> VDIPL. All rights reserved. Designed By <a href="http://www.matrixbricks.com" target="_blank">Matrix Bricks</a></div>
             </h2>
-          <div class="home-media-icon-main-head">
-            <a href="#">
-              <div class="home-media-icon-main">
-                <i class="fa-brands fa-facebook-f"></i>
-              </div>
-            </a>
-            <a href="#">
-              <div class="home-media-icon-main">
-                <i class="fa-brands fa-x-twitter"></i>
-              </div>
-            </a>
-            <a href="#">
-              <div class="home-media-icon-main">
-                <i class="fa-brands fa-instagram"></i>
-              </div>
-            </a>
-            <a href="#">
-              <div class="home-media-icon-main">
-                <i class="fa-brands fa-youtube"></i>
-              </div>
-            </a>
-          </div>
+            @php
+                $contact = \App\Models\Contact::latest()->first(); // Adjust this query as needed
+                $platforms = json_decode($contact->social_platforms ?? '[]', true);
+                $urls = json_decode($contact->social_urls ?? '[]', true);
+
+                // Mapping platform to Font Awesome icon class
+                $iconMap = [
+                    'Facebook' => 'fa-facebook-f',
+                    'Twitter' => 'fa-x-twitter',
+                    'Instagram' => 'fa-instagram',
+                    'LinkedIn' => 'fa-linkedin-in',
+                    'Youtube' => 'fa-youtube',
+                    'Watsapp' => 'fa-whatsapp',
+                    'Pinterest' => 'fa-pinterest-p'
+                ];
+            @endphp
+            @if(!empty($platforms) && !empty($urls))
+                <div class="social-links">
+                    <ul>
+                        @foreach($platforms as $index => $platform)
+                            @php
+                                $url = $urls[$index] ?? '#';
+                                $icon = $iconMap[$platform] ?? 'fa-share-alt'; // fallback icon
+                            @endphp
+                            <a href="{{ $url }}" target="_blank"><i class="fa-brands {{ $icon }}"></i></a>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
         </div>
       </div>
     </div>

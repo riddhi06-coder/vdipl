@@ -3,23 +3,62 @@
         <div class="container">
           <div class="row">
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6 dnone">
-              <div class="social-links">
-                <!-- <span>Follow Us:</span> -->
-                <ul>
-                  <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                  <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                  <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                  <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                </ul>
-              </div>
+            @php
+                $contact = \App\Models\Contact::latest()->first(); // Adjust this query as needed
+                $platforms = json_decode($contact->social_platforms ?? '[]', true);
+                $urls = json_decode($contact->social_urls ?? '[]', true);
+
+                // Mapping platform to Font Awesome icon class
+                $iconMap = [
+                    'Facebook' => 'fa-facebook-f',
+                    'Twitter' => 'fa-x-twitter',
+                    'Instagram' => 'fa-instagram',
+                    'LinkedIn' => 'fa-linkedin-in',
+                    'Youtube' => 'fa-youtube',
+                    'Watsapp' => 'fa-whatsapp',
+                    'Pinterest' => 'fa-pinterest-p'
+                ];
+            @endphp
+
+            @if(!empty($platforms) && !empty($urls))
+                <div class="social-links">
+                    <ul>
+                        @foreach($platforms as $index => $platform)
+                            @php
+                                $url = $urls[$index] ?? '#';
+                                $icon = $iconMap[$platform] ?? 'fa-share-alt'; // fallback icon
+                            @endphp
+                            <a href="{{ $url }}" target="_blank"><i class="fa-brands {{ $icon }}"></i></a>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             </div>
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-              <div class="topbar-info">
-                <ul>
-                  <li><img src="{{ asset('frontend/assets/images/icons/contact/webp/phone-white.webp') }}"> <a href="tel:+91 22 27454244">+91 22 27454244</a></li>
-                  <li><img src="{{ asset('frontend/assets/images/icons/contact/webp/email-white.webp') }}"> <a href="mailto:info@vdipl.in">info@vdipl.in</a></li>
-                </ul>
-              </div>
+            @php
+                $contact = \App\Models\Contact::latest()->first(); // Adjust query if needed
+            @endphp
+
+            @if($contact)
+                <div class="topbar-info">
+                    <ul>
+                        @if($contact->phone)
+                            <li>
+                                <img src="{{ asset('frontend/assets/images/icons/contact/webp/phone-white.webp') }}">
+                                <a href="tel:{{ $contact->phone }}">+91 {{ $contact->phone }}</a>
+                            </li>
+                        @endif
+                        @if($contact->email)
+                            <li>
+                                <img src="{{ asset('frontend/assets/images/icons/contact/webp/email-white.webp') }}">
+                                <a href="mailto:{{ $contact->email }}">{{ $contact->email }}</a>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
+            @endif
+
             </div>
           </div>
         </div>
