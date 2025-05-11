@@ -22,6 +22,7 @@ use App\Models\Leadership;
 use App\Models\Assets;
 use App\Models\ServiceIntro;
 use App\Models\ServiceChoose;
+use App\Models\Projects;
 
 use Carbon\Carbon;
 
@@ -87,6 +88,17 @@ class HomeController extends Controller
         return view('frontend.service-details', compact('intro', 'service', 'bannerTitles', 'bannerDescriptions', 'bannerImages','choose',
                     'bannerchooseTitles', 'bannerchooseDescriptions', 'bannerchooseImages'));
     }
+
+    public function projects()
+    {
+        $services = Service::has('projects')->with(['projects' => function($query) {
+            $query->whereNull('deleted_by');
+        }])->get();
+        
+        return view('frontend.project-details', compact('services'));
+    }
+    
+    
     
 
 }

@@ -23,5 +23,11 @@ class Service extends Model
         'deleted_by',
     ];
 
+    public function projects()
+    {
+        return $this->hasMany(Projects::class);
+    }
+
+
 
 }
