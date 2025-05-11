@@ -4296,12 +4296,13 @@ footer a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 
 .icon-circle img {
   width: 60px;
   height: 60px;
-  /* filter: brightness(0) invert(1); Make icon white */
+  /* filter: brightness(0) invert(1); */
 }
 
 

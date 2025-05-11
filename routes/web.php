@@ -18,6 +18,8 @@ use App\Http\Controllers\Backend\ServiceChooseController;
 use App\Http\Controllers\Backend\ProjectController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\CareerIntroController;
+use App\Http\Controllers\Backend\JobController;
+
 
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\CareersController;
@@ -83,6 +85,8 @@ Route::resource('manage-contact', ContactController::class);
 // ==== Manage Career Page Details
 Route::resource('manage-career-intro', CareerIntroController::class);
 
+// ==== Manage Career Job Details
+Route::resource('manage-Job', JobController::class);
 
 
 

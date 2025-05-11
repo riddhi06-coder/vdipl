@@ -134,7 +134,7 @@
                     </svg><span>Careers</span></a>
                   <ul class="sidebar-submenu">
                     <li><a href="{{ route('manage-career-intro.index') }}">Introduction</a></li>
-                    <li><a href="{{ route('manage-career-intro.index') }}">Job Details</a></li>
+                    <li><a href="{{ route('manage-Job.index') }}">Job Details</a></li>
                   </ul>
                 </li>
 
