@@ -67,10 +67,12 @@
         <div class="container122">
             <div class="header">
                 <h1>{{ $job->first()->section_heading }}</h1>
+
                 <div class="search-bar">
                     <input type="text" placeholder="Search for a job title..." />
                     <button><i class="fa fa-search"></i></button>
                 </div>
+
             </div>
 
             @forelse($job as $item)
@@ -107,7 +109,6 @@
            <p>{!! $career->description2 !!}</p>
         </div>
     </section>
-
 
 
     <!-- Modal -->
@@ -181,7 +182,8 @@
             
     @include('components.frontend.main-js')
 
-
+    
+    <!----modal jo role fetching---->
     <script>
        function openModal(role = '') {
             const modal = document.getElementById('applyModal');
@@ -207,6 +209,29 @@
         }
 
     </script>
+
+    <!----- search filter--->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.querySelector('.search-bar input');
+            const searchBtn = document.querySelector('.search-bar button');
+            const jobCards = document.querySelectorAll('.job-card');
+
+            searchBtn.addEventListener('click', function () {
+                const query = searchInput.value.toLowerCase().trim();
+
+                jobCards.forEach(card => {
+                    const title = card.querySelector('h2').textContent.toLowerCase();
+                    if (title.includes(query)) {
+                        card.style.display = 'flex'; 
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
                    
 </body>
 </html>
