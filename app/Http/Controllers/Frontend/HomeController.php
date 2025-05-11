@@ -106,6 +106,36 @@ class HomeController extends Controller
     }
     
     
+    public function contact_send(Request $request)
+    {
+        $request->validate([
+            'FirstName' => 'required|string|max:255',
+            'Email' => 'required|email',
+            'PhoneNumber' => 'required|digits_between:7,15',
+            'user_message' => 'required|string',
+        ]);
+
+        $data = [
+            'name' => $request->FirstName,
+            'email' => $request->Email,
+            'phone' => $request->PhoneNumber,
+            'user_message' => $request->user_message,
+        ];
+
+        Mail::send('frontend.contact_mail', $data, function ($message) use ($request) {
+            $message->to('riddhi@matrixbricks.com')
+                    ->cc('shweta@matrixbricks.com')
+                    ->subject('New Contact Form Enquiry');
+        });
+
+        // Confirmation email to user (generalized)
+         Mail::send('frontend.contact_mail_confirmation', [], function ($message) use ($data) {
+            $message->to($data['email'])
+                    ->subject('Thanks for Reaching Out!');
+        });
+
+        return back()->with('message', 'Your message has been sent successfully!');
+    }
     
 
 }

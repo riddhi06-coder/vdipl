@@ -102,5 +102,7 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::get('/projects', [HomeController::class, 'projects'])->name('projects');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::get('/careers', [CareersController::class, 'career'])->name('careers');
+    Route::post('/job-apply', [CareersController::class, 'submit'])->name('job.apply');
+    Route::post('/contact-send', [HomeController::class, 'contact_send'])->name('send.contact');
    
 });

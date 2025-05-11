@@ -3,6 +3,14 @@
 
 <head>
     @include('components.frontend.head')
+    <style>
+        .invalid-feedback{
+            display: block;
+            color: rgb(230, 23, 23);
+            font-size: 14px;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -46,32 +54,51 @@
             <div class="responsive-container-block big-container">
                 <div class="responsive-container-block container">
                 <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-7 wk-ipadp-10 line" id="i69b">
-                    <form class="form-box">
-                    <div class="container-block form-wrapper">
-                        <div class="responsive-container-block">
-                        <div class="left4">
-                            <div class="responsive-cell-block wk-ipadp-6 wk-tab-12 wk-mobile-12 wk-desk-6" id="i10mt-2">
-                            <input class="input" id="ijowk-2" name="FirstName" placeholder="First Name">
+
+                    <form class="form-box" id="ContactApplicationForm" method="POST" action="{{ route('send.contact') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="container-block form-wrapper">
+                            <div class="responsive-container-block">
+                            <div class="left4">
+                                <div class="responsive-cell-block wk-ipadp-6 wk-tab-12 wk-mobile-12 wk-desk-6" id="i10mt-2">
+                                <input class="input" id="FirstName" name="FirstName" placeholder="First Name*" value="{{ old('FirstName') }}">
+                                @error('FirstName')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
+                               
+                                <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
+                                <input class="input" id="Email" name="Email" placeholder="Email Address*" value="{{ old('Email') }}">
+                                @error('Email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
+                                <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12 lastPhone">
+                                <input class="input" id="PhoneNumber" name="PhoneNumber" placeholder="Phone Number*" value="{{ old('PhoneNumber') }}">
+                                @error('PhoneNumber')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                </div>
                             </div>
-                            <!--<div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">-->
-                            <!--  <input class="input" id="indfi-2" name="Last Name" placeholder="Last Name">-->
-                            <!--</div>-->
-                            <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12">
-                            <input class="input" id="ipmgh-2" name="Email" placeholder="Email Address">
+                            <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-12 wk-ipadp-12" id="i634i-2">
+                                <textarea class="textinput" id="user_message" name="user_message" placeholder="Message">{{ old('user_message') }}</textarea>
+                                @error('user_message')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            <div class="responsive-cell-block wk-desk-6 wk-ipadp-6 wk-tab-12 wk-mobile-12 lastPhone">
-                            <input class="input" id="imgis-2" name="PhoneNumber" placeholder="Phone Number">
                             </div>
+                            <button type="submit" class="send" id="w-c-s-bgc_p-1-dm-id">Send</button>
                         </div>
-                        <div class="responsive-cell-block wk-tab-12 wk-mobile-12 wk-desk-12 wk-ipadp-12" id="i634i-2">
-                            <textarea class="textinput" id="i5vyy-2" placeholder="Message"></textarea>
-                        </div>
-                        </div>
-                        <a class="send" href="#" id="w-c-s-bgc_p-1-dm-id">
-                        Send
-                        </a>
-                    </div>
                     </form>
+
                 </div>
                 </div>
             </div>

@@ -3,6 +3,14 @@
 
 <head>
     @include('components.frontend.head')
+
+    <style>
+        .invalid-feedback{
+            display: block;
+            color: rgb(230, 23, 23);
+            font-size: 14px;
+        }
+    </style>
 </head>
 
 <body>
@@ -84,7 +92,7 @@
                     @if($item->job_description)
                     <a href="{{ asset('uploads/career/' . $item->job_description) }}" class="btn-outline" download>Download</a>
                     @endif
-                    <a href="javascript:void(0);" class="btn-primary" onclick="openModal()">Apply Now</a>
+                    <a href="javascript:void(0);" class="btn-primary" onclick="openModal('{{ $item->job_role }}')">Apply Now</a>
                 </div>
             </div>
             @empty
@@ -100,27 +108,71 @@
         </div>
     </section>
 
+
+
     <!-- Modal -->
     <div id="applyModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2 style="margin-bottom:15px;">Apply Now</h2>
-            <form>
-            <div class="form-group ">
-                <input type="text" placeholder="Your Name*" required class="form-group2">
-                <input type="email" placeholder="Your Email*" required class="form-group2">
-            </div>
-            <div class="form-group">
-                <input type="text" placeholder="Phone Number*" required class="form-group2">
-                <input type="text" placeholder="Subject*" required class="form-group2">
-            </div>
-            <input type="text" placeholder="Position Applying For*" required class="form-group3">
+
+            <form id="jobApplicationForm" method="POST" action="{{ route('job.apply') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group ">
+                    <input type="text" id="name" name="name" placeholder="Your Name*" class="form-group2" value="{{ old('name') }}">
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+
+                    <input type="email" id="email"  name="email" placeholder="Your Email*" class="form-group2" value="{{ old('email') }}">
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="phone" name="phone" placeholder="Phone Number*" class="form-group2" value="{{ old('phone') }}">
+                    @error('phone')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+
+                    <input type="text" id="subject" name="subject" placeholder="Subject*" class="form-group2" value="{{ old('subject') }}">
+                    @error('subject')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+
+                </div>
+                <input type="text" id="role" name="role" placeholder="Position Applying For*" class="form-group3" value="{{ old('role') }}"> 
+                @error('role')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+                
+                <input type="file" id="doc" name="doc" accept=".pdf,.doc" class="form-group3" value="{{ old('doc') }}">
+                @error('doc')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             
-            <input type="file" accept=".pdf,.doc" required class="form-group3">
-        
-            <textarea placeholder="Write Message"></textarea>
-            <button type="submit" class="submit-btn">Submit</button>
+                <textarea id="message"  name="message" placeholder="Write Message">{{ old('message') }}</textarea>
+                @error('message')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+                <button type="submit" class="submit-btn">Submit</button>
             </form>
+
         </div>
     </div>
 
@@ -129,18 +181,32 @@
             
     @include('components.frontend.main-js')
 
+
     <script>
-        function openModal() {
-            document.getElementById('applyModal').style.display = "block";
+       function openModal(role = '') {
+            const modal = document.getElementById('applyModal');
+            const roleInput = modal.querySelector('#role'); 
+
+            if (roleInput) {
+                roleInput.value = role;
+                roleInput.readOnly = true; 
+            }
+
+            modal.style.display = 'block';
         }
 
         function closeModal() {
-            document.getElementById('applyModal').style.display = "none";
+            const modal = document.getElementById('applyModal');
+            const roleInput = modal.querySelector('#role');
+
+            if (roleInput) {
+                roleInput.disabled = false; 
+            }
+
+            modal.style.display = 'none';
         }
+
     </script>
-      
-      
-        
-                    
+                   
 </body>
 </html>
