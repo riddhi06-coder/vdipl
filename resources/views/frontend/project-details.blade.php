@@ -55,6 +55,7 @@
                                                 <p><strong>Project Name:</strong> {{ $project->project_name }}</p>
                                                 <p><strong>Location:</strong> {{ $project->location }}</p>
                                                 <p><strong>Cost:</strong> {{ $project->cost }} CR</p>
+                                                <!-- <button class="btn btn-primary mt-2" onclick="openImageSlider({{ $service->id }}, {{ $pIndex }})">View Gallery</button> -->
                                             </div>
                                         </div>
                                     </div>
@@ -123,7 +124,7 @@
                 let activeClass = i === 0 ? 'active' : '';
                 carouselInner.innerHTML += `
                     <div class="carousel-item ${activeClass}">
-                        <img src="/uploads/projects/${img.trim()}" class="d-block w-100" alt="Project Image">
+                        <img src="/uploads/projects/gallery/${img.trim()}" class="d-block w-100" alt="Project Image">
                     </div>`;
             });
 
