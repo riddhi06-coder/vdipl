@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\CareerIntroController;
 
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\CareersController;
 
 // Route::get('/', function () {
 //     return view('frontend.home');
@@ -96,5 +97,6 @@ Route::group(['prefix'=> '', 'middleware'=>[\App\Http\Middleware\PreventBackHist
     Route::get('/services/{slug}', [HomeController::class, 'service'])->name('services');
     Route::get('/projects', [HomeController::class, 'projects'])->name('projects');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+    Route::get('/careers', [CareersController::class, 'career'])->name('careers');
    
 });
