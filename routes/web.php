@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\LeadershipController;
 use App\Http\Controllers\Backend\AssetsController;
 use App\Http\Controllers\Backend\ServiceDetailsController;
 use App\Http\Controllers\Backend\ServiceChooseController;
+use App\Http\Controllers\Backend\ProjectController;
 
 use App\Http\Controllers\Frontend\HomeController;
 
@@ -69,6 +70,9 @@ Route::resource('manage-service-intro', ServiceDetailsController::class);
 
 // ==== Manage Service Why Choose
 Route::resource('manage-service-whychoose', ServiceChooseController::class);
+
+// ==== Manage Projects
+Route::resource('projects-details', ProjectController::class);
 
 
 
