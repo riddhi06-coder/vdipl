@@ -23,6 +23,7 @@ use App\Models\Assets;
 use App\Models\ServiceIntro;
 use App\Models\ServiceChoose;
 use App\Models\Projects;
+use App\Models\Contact;
 
 use Carbon\Carbon;
 
@@ -96,6 +97,12 @@ class HomeController extends Controller
         }])->get();
         
         return view('frontend.project-details', compact('services'));
+    }
+
+    public function contact()
+    {
+        $contact = Contact::whereNull('deleted_by')->first();
+        return view('frontend.contact', compact('contact'));
     }
     
     
