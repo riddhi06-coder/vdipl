@@ -43,7 +43,7 @@
                   </div>
                   <div class="service-info">
                     <h5>{{ $services[$item->service_id]->service ?? 'Service Name' }}</h5>
-                    <a href="#" class="details-icon">
+                    <a href="{{ route('services', ['slug' => $services[$item->service_id]->slug ?? '']) }}" class="details-icon">
                       <i class="fa fa-arrow-right-long"></i>
                     </a>
                   </div>
@@ -90,7 +90,7 @@
                 @endforeach
               </div>
 
-              <a href="{{ url('/about') }}" class="theme-btn" data-aos="fade-up" data-aos-duration="1000">Learn More</a>
+              <a href="{{ route('about.us') }}" class="theme-btn" data-aos="fade-up" data-aos-duration="1000">Learn More</a>
             </div>
           </div>
         </div>
