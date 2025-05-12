@@ -31,6 +31,7 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         $validatedData = $request->validate([
             'service_id'       => 'required|exists:services,id',
             'banner_heading'   => 'nullable|string|max:255',
@@ -40,6 +41,8 @@ class ProjectController extends Controller
             'location'         => 'required|string|max:255',
             'cost'             => 'required|string|max:255',
             'image'            => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'gallery_image' => 'nullable|array',
+            'gallery_image.*' => 'max:2048',
         ], [
             'service_id.required'      => 'Please select a project type.',
             'service_id.exists'        => 'Selected project type does not exist.',
@@ -53,6 +56,7 @@ class ProjectController extends Controller
             'project_name.required'    => 'Please enter the project name.',
             'location.required'        => 'Please enter the project location.',
             'cost.required'            => 'Please enter the project cost.',
+            'gallery_image.*.max' => 'Each gallery image must be less than 2MB.',
         ]);
 
         // Handle banner_image upload
@@ -84,7 +88,23 @@ class ProjectController extends Controller
         $project->created_by = Auth::user()->id;
         $project->save();
 
-        return redirect()->route('manage-projects.index')->with('message', 'Project added successfully.');
+
+        // ✅ Now handle gallery images (after saving project)
+        if ($request->hasFile('gallery_image')) {
+            $galleryImages = [];
+            foreach ($request->file('gallery_image') as $image) {
+                if ($image->isValid()) {
+                    $extension = $image->getClientOriginalExtension();
+                    $new_name = time() . rand(10, 999) . '.' . $extension;
+                    $image->move(public_path('/uploads/projects'), $new_name);
+                    $galleryImages[] = $new_name;
+                }
+            }
+            $project->gallery_images = json_encode($galleryImages);
+            $project->save();
+        }
+
+        return redirect()->route('projects-details.index')->with('message', 'Project added successfully.');
     }
 
     public function edit($id)
@@ -96,6 +116,7 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request);
         $project = Projects::findOrFail($id);
 
         $validatedData = $request->validate([
@@ -107,6 +128,8 @@ class ProjectController extends Controller
             'location'         => 'required|string|max:255',
             'cost'             => 'required|string|max:255',
             'image'            => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'gallery_image' => 'nullable|array',
+            'gallery_image.*' => 'max:2048',
         ], [
             'service_id.required'      => 'Please select a project type.',
             'service_id.exists'        => 'Selected project type does not exist.',
@@ -119,6 +142,7 @@ class ProjectController extends Controller
             'project_name.required'    => 'Please enter the project name.',
             'location.required'        => 'Please enter the project location.',
             'cost.required'            => 'Please enter the project cost.',
+            'gallery_image.*.max' => 'Each gallery image must be less than 2MB.',
         ]);
 
         // Handle banner_image upload
@@ -139,6 +163,22 @@ class ProjectController extends Controller
             $project->image = $imageName;
         }
 
+        $existingGalleryImages = $request->input('existing_gallery_images', []);  
+
+        if ($request->hasFile('gallery_image')) {
+            foreach ($request->file('gallery_image') as $image) {
+                if ($image->isValid()) {
+                    $extension = $image->getClientOriginalExtension();
+                    $new_name = time() . rand(10, 999) . '.' . $extension;
+                    $image->move(public_path('/uploads/projects/'), $new_name);
+                    $existingGalleryImages[] = $new_name;  
+                }
+            }
+        }
+
+        $project->gallery_images = json_encode($existingGalleryImages);
+
+
         // Update other fields
         $project->service_id       = $validatedData['service_id'];
         $project->banner_heading   = $validatedData['banner_heading'];
@@ -150,7 +190,7 @@ class ProjectController extends Controller
         $project->modified_by       = Auth::user()->id;
         $project->save();
 
-        return redirect()->route('manage-projects.index')->with('message', 'Project updated successfully.');
+        return redirect()->route('projects-details.index')->with('message', 'Project updated successfully.');
     }
 
     public function destroy(string $id)
@@ -161,7 +201,7 @@ class ProjectController extends Controller
             $industries = Projects::findOrFail($id);
             $industries->update($data);
 
-            return redirect()->route('manage-projects.index')->with('message', 'Details deleted successfully!');
+            return redirect()->route('projects-details.index')->with('message', 'Details deleted successfully!');
         } catch (Exception $ex) {
             return redirect()->back()->with('error', 'Something Went Wrong - ' . $ex->getMessage());
         }

@@ -132,6 +132,37 @@
                                             <div id="ImagePreviewContainer" style="display: none; margin-top: 10px;">
                                                 <img id="image_preview" src="" alt="Preview" class="img-fluid" style="max-height: 200px; border: 1px solid #ddd; padding: 5px;">
                                             </div>
+                                        </div><br>
+
+
+                                        <!-- Gallery Image Upload -->
+                                        <div class="table-container" style="margin-bottom: 20px;">
+                                            <h5 class="mb-4"><strong>Gallery Image Upload</strong></h5>
+                                            <table class="table table-bordered p-3" id="galleryTable" style="border: 2px solid #dee2e6;">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Uploaded Gallery Image: <span class="text-danger">*</span></th>
+                                                        <th>Preview</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <input type="file" onchange="previewGalleryImage(this, 0)" accept=".png, .jpg, .jpeg, .webp" name="gallery_image[]" id="gallery_image_0" class="form-control" placeholder="Upload Gallery Image" multiple required>
+                                                            <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
+                                                            <br>
+                                                            <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
+                                                        </td>
+                                                        <td>
+                                                            <div id="gallery-preview-container-0"></div>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-primary" id="addGalleryRow">Add More</button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
 
 
@@ -214,6 +245,68 @@
                         reader.readAsDataURL(file);
                     } else {
                         alert('Please upload a valid image file (jpg, jpeg, png, webp).');
+                    }
+                }
+            }
+
+            $(document).ready(function () {
+                let rowId = 0;
+
+                // Add a new gallery image row
+                $('#addGalleryRow').click(function () {
+                    rowId++;
+                    const newRow = `
+                        <tr>
+                            <td>
+                                <input type="file" onchange="previewGalleryImage(this, ${rowId})" accept=".png, .jpg, .jpeg, .webp" name="gallery_image[]" id="gallery_image_${rowId}" class="form-control" placeholder="Upload Gallery Image">
+                                <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
+                                <br>
+                                <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
+                            </td>
+                            <td>
+                                <div id="gallery-preview-container-${rowId}"></div>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger removeGalleryRow">Remove</button>
+                            </td>
+                        </tr>`;
+                    $('#galleryTable tbody').append(newRow);
+                });
+
+                // Remove a gallery image row
+                $(document).on('click', '.removeGalleryRow', function () {
+                    $(this).closest('tr').remove();
+                });
+            });
+
+            // Preview function for gallery images
+            function previewGalleryImage(input, rowId) {
+                const file = input.files[0];
+                const previewContainer = document.getElementById(`gallery-preview-container-${rowId}`);
+
+                // Clear previous preview
+                previewContainer.innerHTML = '';
+
+                if (file) {
+                    const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+
+                    if (validImageTypes.includes(file.type)) {
+                        const reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            // Create an image element for preview
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            img.style.maxWidth = '120px';
+                            img.style.maxHeight = '100px';
+                            img.style.objectFit = 'cover';
+
+                            previewContainer.appendChild(img);
+                        };
+
+                        reader.readAsDataURL(file);
+                    } else {
+                        previewContainer.innerHTML = '<p>Unsupported file type</p>';
                     }
                 }
             }

@@ -140,6 +140,47 @@
                                             </div>
                                         </div>
 
+                                          <!-- Gallery Image Upload -->
+                                            <div class="table-container" style="margin-bottom: 20px;">
+                                                <div class="d-flex align-items-center">
+                                                    <h5 class="mb-4 me-3"><strong>Gallery Image Upload</strong></h5>
+                                                    <button type="button" class="btn btn-primary ms-auto" id="addGalleryRow">Add More</button>
+                                                </div>
+
+                                                <table class="table table-bordered p-3" id="galleryTable" style="border: 2px solid #dee2e6;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Uploaded Gallery Image: <span class="text-danger">*</span></th>
+                                                            <th>Preview</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if(isset($details->gallery_images) && $galleryImages = json_decode($details->gallery_images, true))
+                                                            @foreach($galleryImages as $key => $galleryImage)
+                                                                <tr>
+                                                                    <td>
+                                                                        <input type="file" onchange="previewGalleryImage(this, {{ $key }})" accept=".png, .jpg, .jpeg, .webp" name="gallery_image[]" id="gallery_image_{{ $key }}" class="form-control" placeholder="Upload Gallery Image">
+                                                                        @error('gallery_image')
+                                                                            <div class="text-danger">{{ $message }}</div>
+                                                                        @enderror
+                                                                        <small class="form-text text-muted">Note: The file size should be less than 2MB.</small><br>
+                                                                        <small class="form-text text-muted">Note: Only files in .jpg, .jpeg, .png, .webp format are allowed.</small>
+                                                                        <input type="hidden" name="existing_gallery_images[]" value="{{ $galleryImage }}">
+                                                                    </td>
+                                                                    <td>
+                                                                        <img id="gallery-preview-container-{{ $key }}" src="{{ asset('/uploads/projects/' . $galleryImage) }}" alt="Preview" style="max-height: 150px; border: 1px solid #ddd; padding: 5px;">
+                                                                    </td>
+                                                                    <td>
+                                                                        <button type="button" class="btn btn-danger removeGalleryRow">Remove</button>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        @endif
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
 
                                         <!-- Form Actions -->
                                         <div class="col-12 text-end">
@@ -225,6 +266,74 @@
             }
 
         </script>
+
+
+        <!--Gallery Image Preview & Add More Option-->
+        <script>
+               $(document).ready(function () {
+                let rowId = {{ isset($galleryImages) ? count($galleryImages) : 0 }};
+
+                // Add a new gallery image row
+                $('#addGalleryRow').click(function () {
+                    rowId++;
+                    const newRow = `
+                        <tr>
+                            <td>
+                                <input type="file" onchange="previewGalleryImage(this, ${rowId})" accept=".png, .jpg, .jpeg, .webp" name="gallery_image[]" id="gallery_image_${rowId}" class="form-control" placeholder="Upload Gallery Image">
+                                <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
+                                <br>
+                                <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
+                            </td>
+                           <td>
+                                <div id="gallery-preview-container-${rowId}" style="max-height: 150px; border: 1px solid #ddd; padding: 5px;"></div>
+                            </td>
+
+                            <td>
+                                <button type="button" class="btn btn-danger removeGalleryRow">Remove</button>
+                            </td>
+                        </tr>`;
+                    $('#galleryTable tbody').append(newRow);
+                });
+
+                // Remove a gallery image row
+                $(document).on('click', '.removeGalleryRow', function () {
+                    $(this).closest('tr').remove();
+                });
+            });
+
+            // Preview function for gallery images
+            function previewGalleryImage(input, rowId) {
+                const file = input.files[0];
+                const previewContainer = document.getElementById(`gallery-preview-container-${rowId}`);
+
+                // Clear previous preview
+                previewContainer.innerHTML = '';
+
+                if (file) {
+                    const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+
+                    if (validImageTypes.includes(file.type)) {
+                        const reader = new FileReader();
+
+                        reader.onload = function (e) {
+                            // Create an image element for preview
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            img.style.maxWidth = '120px';
+                            img.style.maxHeight = '100px';
+                            img.style.objectFit = 'cover';
+
+                            previewContainer.appendChild(img);
+                        };
+
+                        reader.readAsDataURL(file);
+                    } else {
+                        previewContainer.innerHTML = '<p>Unsupported file type</p>';
+                    }
+                }
+            }
+        </script>
+
 
 </body>
 

@@ -21,6 +21,7 @@ class Projects extends Model
         'location',
         'cost',
         'image',
+        'gallery_images',
         'created_at',
         'created_by',
         'modified_at',
