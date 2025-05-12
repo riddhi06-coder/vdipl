@@ -50,7 +50,12 @@
                                 @foreach($service->projects as $pIndex => $project)
                                     <div class="col">
                                         <div class="card">
-                                            <img src="{{ asset('uploads/projects/' . $project->image) }}" class="card-img-top" alt="Project Image">
+                                            <img src="{{ asset('uploads/projects/' . $project->image) }}"
+                                                class="card-img-top"
+                                                alt="Project Image"
+                                                style="cursor:pointer"
+                                                onclick="openImageSlider({{ $service->id }}, {{ $pIndex }})">
+
                                             <div class="card-body">
                                                 <p><strong>Project Name:</strong> {{ $project->project_name }}</p>
                                                 <p><strong>Location:</strong> {{ $project->location }}</p>
@@ -68,27 +73,26 @@
         </div>
   
         <!-- Bootstrap Modal -->
-        <!-- Modal -->
         <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
-                    <div class="modal-body">
-                        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner" id="carouselInner">
-                                <!-- Images go here -->
-                            </div>
+                    <div class="modal-body position-relative">
+                        <!-- Close Button -->
+                        <button class="close-btn" data-bs-dismiss="modal">✖</button>
+
+                        <div id="carouselExample" class="carousel slide" >
+                            <div class="carousel-inner" id="carouselInner"></div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon"></span>
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             </button>
                             <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                                <span class="carousel-control-next-icon"></span>
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <button
             type="button"
@@ -103,14 +107,14 @@
             
     @include('components.frontend.main-js')
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         const projectImageMap = @json($services->mapWithKeys(function ($service) {
             return [
                 $service->id => $service->projects->map(function ($project) {
-                    return explode(',', $project->image); // assuming comma-separated filenames
+                    return json_decode($project->gallery_images ?? '[]');// assuming comma-separated filenames
                 })
             ];
         }));
@@ -124,12 +128,13 @@
                 let activeClass = i === 0 ? 'active' : '';
                 carouselInner.innerHTML += `
                     <div class="carousel-item ${activeClass}">
-                        <img src="/uploads/projects/gallery/${img.trim()}" class="d-block w-100" alt="Project Image">
+                        <img src="/uploads/projects/${img.trim()}" class="d-block w-100" alt="Project Image">
                     </div>`;
             });
 
             new bootstrap.Modal(document.getElementById('imageModal')).show();
         }
+
 
         document.addEventListener("DOMContentLoaded", function () {
             const tabs = document.querySelectorAll('#projectTabs .nav-link');
