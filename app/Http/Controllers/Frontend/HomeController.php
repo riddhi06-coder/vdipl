@@ -76,16 +76,35 @@ class HomeController extends Controller
         $service = Service::where('slug', $slug)->whereNull('deleted_by')->firstOrFail();
         
         $intro = ServiceIntro::where('service_id', $service->id)->whereNull('deleted_by')->first();
+        // dd($service);
         $choose = ServiceChoose::where('service_id', $service->id)->whereNull('deleted_by')->first();
         
-        $bannerTitles = json_decode($intro->banner_titles, true);
-        $bannerDescriptions = json_decode($intro->banner_descriptions, true);
-        $bannerImages = json_decode($intro->banner_images, true);
+        // $bannerTitles = json_decode($intro->banner_titles, true);
+        // $bannerDescriptions = json_decode($intro->banner_descriptions, true);
+        // $bannerImages = json_decode($intro->banner_images, true);
 
-        $bannerchooseTitles = json_decode($choose->banner_titles, true);
-        $bannerchooseDescriptions = json_decode($choose->banner_descriptions, true);
-        $bannerchooseImages = json_decode($choose->banner_images, true);
+        // $bannerchooseTitles = json_decode($choose->banner_titles, true);
+        // $bannerchooseDescriptions = json_decode($choose->banner_descriptions, true);
+        // $bannerchooseImages = json_decode($choose->banner_images, true);
     
+
+
+        $bannerTitles = $bannerDescriptions = $bannerImages = [];
+        $bannerchooseTitles = $bannerchooseDescriptions = $bannerchooseImages = [];
+
+        if ($intro) {
+            $bannerTitles = json_decode($intro->banner_titles, true) ?? [];
+            $bannerDescriptions = json_decode($intro->banner_descriptions, true) ?? [];
+            $bannerImages = json_decode($intro->banner_images, true) ?? [];
+        }
+
+        if ($choose) {
+            $bannerchooseTitles = json_decode($choose->banner_titles, true) ?? [];
+            $bannerchooseDescriptions = json_decode($choose->banner_descriptions, true) ?? [];
+            $bannerchooseImages = json_decode($choose->banner_images, true) ?? [];
+        }
+
+
         return view('frontend.service-details', compact('intro', 'service', 'bannerTitles', 'bannerDescriptions', 'bannerImages','choose',
                     'bannerchooseTitles', 'bannerchooseDescriptions', 'bannerchooseImages'));
     }

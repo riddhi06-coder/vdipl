@@ -37,7 +37,7 @@ class CareerIntroController extends Controller
             'description' => 'required|string',
             'description1' => 'required|string',
             'section_heading2' => 'required|string|max:255',
-            'banner_items.*.image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'banner_items.*.image' => 'required|mimes:jpg,jpeg,png,webp,svg|max:2048',
             'banner_items.*.description' => 'required|string',
         ], [
             'banner_heading.required' => 'The banner heading is required.',
@@ -150,7 +150,7 @@ class CareerIntroController extends Controller
             'description' => 'required|string',
             'description1' => 'required|string',
             'section_heading2' => 'required|string|max:255',
-            'banner_items.*.image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'banner_items.*.image' => 'nullable|mimes:jpg,jpeg,png,webp,svg|max:2048',
             'banner_items.*.description' => 'required|string',
         ]);
 

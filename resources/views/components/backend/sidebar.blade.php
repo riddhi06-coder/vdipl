@@ -44,7 +44,6 @@
                   </a>
                 </li>
 
-
                 <li class="sidebar-list {{ request()->is('manage-services*','manage-service-details.index*') ? 'active' : '' }}">
                   <i class="fa fa-thumb-tack"> </i>
                   <a class="sidebar-link sidebar-title" href="#">
@@ -92,7 +91,6 @@
                     <li><a href="{{ route('manage-associates.index') }}">Associates</a></li>
                   </ul>
                 </li>
-
 
                 <li class="sidebar-list"> <i class="fa fa-thumb-tack"> </i><a class="sidebar-link sidebar-title" href="#">
                     <svg class="stroke-icon"> 

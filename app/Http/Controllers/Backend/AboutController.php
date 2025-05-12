@@ -41,7 +41,7 @@ class AboutController extends Controller
             'banner_items.*.description' => 'required|string',
             'section_heading3' => 'required|string|max:255',
             'items.*.name' => 'required|string|max:255',
-            'items.*.image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'items.*.image' => 'required|mimes:jpg,jpeg,png,webp,svg|max:2048',
             'items.*.description' => 'required|string',
         ], [
             'banner_heading.required' => 'The banner heading is required.',
@@ -62,7 +62,7 @@ class AboutController extends Controller
             'items.*.name.required' => 'Each Core Value must have a name.',
             'items.*.image.required' => 'Each Core Value must have an image.',
             'items.*.image.image' => 'Each Core Value image must be a valid image.',
-            'items.*.image.mimes' => 'Each Core Value image must be a JPG, JPEG, PNG, or WEBP file.',
+            'items.*.image.mimes' => 'Each Core Value image must be a JPG, JPEG, PNG, SVG or WEBP file.',
             'items.*.image.max' => 'Each Core Value image must not exceed 2MB.',
             'items.*.description.required' => 'Each Core Value must have a description.',
         ]);
@@ -180,7 +180,7 @@ class AboutController extends Controller
             'banner_items.*.description' => 'required|string',
             'section_heading3' => 'required|string|max:255',
             'items.*.name' => 'required|string|max:255',
-            'items.*.image' => 'nullable|image|mimes:jpg,jpeg,png,webp,svg|max:2048',
+            'items.*.image' => 'nullable|mimes:jpg,jpeg,png,webp,svg|max:2048',
             'items.*.description' => 'required|string',
         ]);
 
