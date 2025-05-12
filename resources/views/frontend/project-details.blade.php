@@ -127,10 +127,9 @@
                 return;
             }
 
-            // Get current path like /vdipl/..., then extract /vdipl/
             let currentPath = window.location.pathname;
-            let baseDir = currentPath.split('/')[1]; // 'vdipl'
-            let baseUrl = `${window.location.origin}/${baseDir}/`; // https://domain.com/vdipl/
+            let baseDir = currentPath.split('/')[1]; 
+            let baseUrl = `${window.location.origin}/${baseDir}/`; 
 
             let carouselInner = document.getElementById("carouselInner");
             carouselInner.innerHTML = "";
@@ -146,8 +145,6 @@
 
             new bootstrap.Modal(document.getElementById('imageModal')).show();
         }
-
-
 
         document.addEventListener("DOMContentLoaded", function () {
             const tabs = document.querySelectorAll('#projectTabs .nav-link');
