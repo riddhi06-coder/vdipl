@@ -120,20 +120,29 @@
         }));
 
         function openImageSlider(serviceId, projectIndex) {
-            let images = projectImageMap[serviceId][projectIndex];
+            let images = projectImageMap[serviceId][projectIndex] || [];
+
+            if (!images.length) {
+                alert("No gallery images found for this project.");
+                return;
+            }
+
+            let baseUrl = window.location.origin; // gets http://127.0.0.1:8000 or your domain
             let carouselInner = document.getElementById("carouselInner");
             carouselInner.innerHTML = "";
 
             images.forEach((img, i) => {
                 let activeClass = i === 0 ? 'active' : '';
+                let imagePath = `${baseUrl}/uploads/projects/${img.trim()}`;
                 carouselInner.innerHTML += `
                     <div class="carousel-item ${activeClass}">
-                        <img src="/uploads/projects/${img.trim()}" class="d-block w-100" alt="Project Image">
+                        <img src="${imagePath}" class="d-block w-100" alt="Project Image">
                     </div>`;
             });
 
             new bootstrap.Modal(document.getElementById('imageModal')).show();
         }
+
 
 
         document.addEventListener("DOMContentLoaded", function () {
