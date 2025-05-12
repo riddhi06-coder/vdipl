@@ -127,13 +127,17 @@
                 return;
             }
 
-            let baseUrl = window.location.origin; // gets http://127.0.0.1:8000 or your domain
+            // Get current path like /vdipl/..., then extract /vdipl/
+            let currentPath = window.location.pathname;
+            let baseDir = currentPath.split('/')[1]; // 'vdipl'
+            let baseUrl = `${window.location.origin}/${baseDir}/`; // https://domain.com/vdipl/
+
             let carouselInner = document.getElementById("carouselInner");
             carouselInner.innerHTML = "";
 
             images.forEach((img, i) => {
                 let activeClass = i === 0 ? 'active' : '';
-                let imagePath = `${baseUrl}/uploads/projects/${img.trim()}`;
+                let imagePath = `${baseUrl}uploads/projects/${img.trim()}`;
                 carouselInner.innerHTML += `
                     <div class="carousel-item ${activeClass}">
                         <img src="${imagePath}" class="d-block w-100" alt="Project Image">
