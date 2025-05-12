@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use App\Models\ServiceChoose;
 use App\Models\Service;
+use Illuminate\Validation\Rule;
 
 use Carbon\Carbon;
 
@@ -93,7 +94,12 @@ class ServiceChooseController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'service_id' => 'required|exists:services,id|unique:service_whychoose,service_id,NULL,id,deleted_by,NULL', 
+             'service_id' => [
+                'required',
+                Rule::exists('services', 'id')->where(function ($query) {
+                    $query->whereNull('deleted_by');
+                }),
+            ],
             'banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'section_heading' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
