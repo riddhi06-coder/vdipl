@@ -3,6 +3,15 @@
 
 <head>
     @include('components.frontend.head')
+
+    <style>
+
+    .test
+        {
+        display: block !important;
+        }
+    </style>
+    
 </head>
 
 <body>
@@ -37,7 +46,7 @@
                         @endif
                     </div>
                         
-                    <div class="col-xl-6 col-lg-6 col-md-12 bg-row2">
+                    <div class="col-xl-6 col-lg-6 col-md-12 bg-row2 test">
                         <p class="text-p">
                             {!! $intro->description ?? '' !!}
                         </p>
