@@ -33,26 +33,18 @@ class ServiceDetailsController extends Controller
     {
         $request->validate([
             'service_id' => 'required|exists:services,id|unique:service_intro,service_id,NULL,id,deleted_by,NULL',
-            'banner_image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'section_heading' => 'required|string|max:255',
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'description' => 'required|string',
-            'section_heading2' => 'required|string|max:255',
-            'banner_items' => 'required|array|min:1',
-            'banner_items.*.name' => 'required|string|max:255',
-            'banner_items.*.description' => 'required|string',
-            'banner_items.*.image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'section_heading' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'description' => 'nullable|string',
+            'section_heading2' => 'nullable|string|max:255',
+            'banner_items' => 'nullable|array|min:1',
+            'banner_items.*.name' => 'nullable|string|max:255',
+            'banner_items.*.description' => 'nullable|string',
+            'banner_items.*.image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ], [
-            'banner_image.required' => 'The banner image is required.',
             'banner_image.image' => 'The banner image must be a valid image.',
-            'section_heading.required' => 'The section heading is required.',
-            'image.required' => 'The image is required.',
-            'description.required' => 'The description is required.',
-            'section_heading2.required' => 'The second section heading is required.',
-            'banner_items.required' => 'At least one banner item is required.',
-            'banner_items.*.name.required' => 'Each item must have a name.',
-            'banner_items.*.description.required' => 'Each item must have a description.',
-            'banner_items.*.image.required' => 'Each item must have an image.',
+           
         ]);
         
     
@@ -119,25 +111,16 @@ class ServiceDetailsController extends Controller
         $request->validate([
             'service_id' => 'required|exists:services,id|unique:service_intro,service_id,NULL,id,deleted_by,NULL', 
             'banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'section_heading' => 'required|string|max:255',
+            'section_heading' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'description' => 'required|string',
-            'section_heading2' => 'required|string|max:255',
-            'banner_items' => 'required|array|min:1',
-            'banner_items.*.name' => 'required|string|max:255',
-            'banner_items.*.description' => 'required|string',
+            'description' => 'nullable|string',
+            'section_heading2' => 'nullable|string|max:255',
+            'banner_items' => 'nullable|array|min:1',
+            'banner_items.*.name' => 'nullable|string|max:255',
+            'banner_items.*.description' => 'nullable|string',
             'banner_items.*.image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048', 
         ], [
-            'banner_image.required' => 'The banner image is required.',
             'banner_image.image' => 'The banner image must be a valid image.',
-            'section_heading.required' => 'The section heading is required.',
-            'image.required' => 'The image is required.',
-            'description.required' => 'The description is required.',
-            'section_heading2.required' => 'The second section heading is required.',
-            'banner_items.required' => 'At least one banner item is required.',
-            'banner_items.*.name.required' => 'Each item must have a name.',
-            'banner_items.*.description.required' => 'Each item must have a description.',
-            'banner_items.*.image.required' => 'Each item must have an image.',
         ]);
         
         $serviceIntro = ServiceIntro::findOrFail($id);

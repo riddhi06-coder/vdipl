@@ -52,7 +52,7 @@
                                         @method('PUT')
 
                                         <div class="col-md-6">
-                                            <label for="service_id" class="form-label">Select Service <span class="txt-danger">*</span></label>
+                                            <label for="service_id" class="form-label">Select Service <span class="txt-danger">*</span> </label>
                                             <select name="service_id" id="service_id" class="form-select" required>
                                                 <option value="">-- Select a Service --</option>
                                                 @foreach($services as $service)
@@ -70,8 +70,8 @@
                                         <!-- Image Upload -->
                                         <!-- Image Upload -->
                                         <div class="col-md-6">
-                                            <label class="form-label" for="banner_image">Banner Image <span class="txt-danger">*</span></label>
-                                            <input class="form-control" id="banner_image" type="file" name="banner_image" accept=".jpg, .jpeg, .png, .webp" required onchange="previewBannerImage()">
+                                            <label class="form-label" for="banner_image">Banner Image </label>
+                                            <input class="form-control" id="banner_image" type="file" name="banner_image" accept=".jpg, .jpeg, .png, .webp"  onchange="previewBannerImage()">
                                             <div class="invalid-feedback">Please upload an image.</div>
                                             <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
                                             <br>
@@ -90,8 +90,8 @@
 
                                         <!-- Section Heading -->
                                         <div class="col-md-6">
-                                            <label class="form-label" for="section_heading">Section Heading <span class="txt-danger">*</span></label>
-                                            <input class="form-control" id="section_heading" type="text" name="section_heading" placeholder="Enter Section Heading" value="{{ old('section_heading' , $details->section_heading) }}" required>
+                                            <label class="form-label" for="section_heading">Section Heading </label>
+                                            <input class="form-control" id="section_heading" type="text" name="section_heading" placeholder="Enter Section Heading" value="{{ old('section_heading' , $details->section_heading) }}" >
                                             <div class="invalid-feedback">Please enter a Section Heading.</div>
                                         </div>
 
@@ -99,8 +99,8 @@
                                          <!-- Image-->
                                         <!-- Image-->
                                         <div class="col-md-6">
-                                            <label class="form-label" for="image">Image <span class="txt-danger">*</span></label>
-                                            <input class="form-control" id="image" type="file" name="image" accept=".jpg, .jpeg, .png, .webp" required onchange="previewImage()">
+                                            <label class="form-label" for="image">Image </label>
+                                            <input class="form-control" id="image" type="file" name="image" accept=".jpg, .jpeg, .png, .webp"  onchange="previewImage()">
                                             <div class="invalid-feedback">Please upload an image.</div>
                                             <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small><br>
                                             <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
@@ -116,8 +116,8 @@
 
                                         <!-- Description -->
                                         <div class="col-md-12" style="margin-bottom: 20px;">
-                                            <label class="form-label" for="description">Description <span class="txt-danger">*</span></label>
-                                            <textarea id="summernote" class="form-control" name="description" rows="5" placeholder="Enter Description here" required >{{ old('description', $details->description) }}</textarea>
+                                            <label class="form-label" for="description">Description </label>
+                                            <textarea id="summernote" class="form-control" name="description" rows="5" placeholder="Enter Description here"  >{{ old('description', $details->description) }}</textarea>
                                             <div class="invalid-feedback">Please enter Description here.</div>
                                         </div>
 
@@ -126,8 +126,8 @@
 
                                         <!-- Section Heading 2-->
                                         <div class="col-md-6">
-                                            <label class="form-label" for="section_heading2">Section Heading <span class="txt-danger">*</span></label>
-                                            <input class="form-control" id="section_heading2" type="text" name="section_heading2" placeholder="Enter Section Heading" value="{{ old('section_heading2' , $details->section_heading2) }}" required>
+                                            <label class="form-label" for="section_heading2">Section Heading </label>
+                                            <input class="form-control" id="section_heading2" type="text" name="section_heading2" placeholder="Enter Section Heading" value="{{ old('section_heading2' , $details->section_heading2) }}" >
                                             <div class="invalid-feedback">Please enter a Section Heading.</div>
                                         </div>
 
@@ -136,9 +136,9 @@
                                             <table class="table table-bordered p-3" id="printsTable" style="border: 2px solid #dee2e6;">
                                                 <thead>
                                                     <tr>
-                                                        <th>Title <span class="txt-danger">*</span></th>
-                                                        <th>Image <span class="txt-danger">*</span></th>
-                                                        <th>Description <span class="txt-danger">*</span></th>
+                                                        <th>Title </th>
+                                                        <th>Image </th>
+                                                        <th>Description </th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -169,10 +169,10 @@
                                                         <tr>
                                                             <td>
                                                                 <input type="text" name="banner_items[{{ $index }}][name]" class="form-control"
-                                                                    value="{{ $entry['name'] ?? '' }}" required>
+                                                                    value="{{ $entry['name'] ?? '' }}" >
                                                             </td>
                                                             <td>
-                                                                <input type="file" name="banner_items[{{ $index }}][image]" class="form-control image-input" {{ isset($entry['image']) ? '' : 'required' }}>
+                                                                <input type="file" name="banner_items[{{ $index }}][image]" class="form-control image-input" {{ isset($entry['image']) ? '' : '' }}>
                                                                 <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
                                                                 <br>
                                                                 <small class="text-secondary"><b>Only .jpg, .jpeg, .png, .webp formats are allowed.</b></small><br>
@@ -183,7 +183,7 @@
                                                                 @endif
                                                             </td>
                                                             <td>
-                                                                <textarea name="banner_items[{{ $index }}][description]" class="form-control" required>{{ $entry['description'] ?? '' }}</textarea>
+                                                                <textarea name="banner_items[{{ $index }}][description]" class="form-control" >{{ $entry['description'] ?? '' }}</textarea>
                                                             </td>
                                                             <td>
                                                                 @if($loop->first)
@@ -298,10 +298,10 @@
 
                     newRow.innerHTML = `
                         <td>
-                            <input type="text" name="banner_items[${rowIndex}][name]" class="form-control" placeholder="Enter Name" required>
+                            <input type="text" name="banner_items[${rowIndex}][name]" class="form-control" placeholder="Enter Name" >
                         </td>
                         <td>
-                            <input type="file" name="banner_items[${rowIndex}][image]" class="form-control image-input" required>
+                            <input type="file" name="banner_items[${rowIndex}][image]" class="form-control image-input" >
                             <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
                             <br>
                             <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
@@ -309,7 +309,7 @@
                             <img src="#" alt="Preview" class="img-preview mt-2" style="max-width: 100px; display: none;">
                         </td>
                         <td>
-                            <textarea name="banner_items[${rowIndex}][description]" class="form-control" placeholder="Enter Description" required></textarea>
+                            <textarea name="banner_items[${rowIndex}][description]" class="form-control" placeholder="Enter Description" ></textarea>
                         </td>
                         <td>
                             <button type="button" class="btn btn-danger removePrintRow">Remove</button>
