@@ -69,7 +69,7 @@
           <div class="row v-center">
             <div class="header-item item-left">
               <div class="logo">
-                <a href="index.html"><img src="{{ asset('frontend/assets/images/home/vdipl-logo.webp') }}"></a>
+                <a href="{{ route('home.page') }}"><img src="{{ asset('frontend/assets/images/home/vdipl-logo.webp') }}"></a>
               </div>
             </div>
             <!-- menu start here -->

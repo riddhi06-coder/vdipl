@@ -66,7 +66,7 @@ class ServicesController extends Controller
         $service = Service::findOrFail($id);
 
         $validatedData = $request->validate([
-            'service' => 'required|string|max:255|unique:services,service,' . $id,
+            'service' => 'required|string|max:255'
         ], [
             'service.required' => 'Please enter a Service.',
             'service.max' => 'The Service must not exceed 255 characters.',

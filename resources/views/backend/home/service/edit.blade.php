@@ -101,7 +101,7 @@
 
                                         <!-- Image Upload -->
                                         <div class="col-md-6">
-                                            <label class="form-label" for="banner_image2">Image 1<span class="txt-danger">*</span></label>
+                                            <label class="form-label" for="banner_image2">Icon<span class="txt-danger">*</span></label>
                                             <input class="form-control" id="banner_image2" type="file" name="banner_image2" accept=".jpg, .jpeg, .png, .webp" required onchange="previewImage()">
                                             <div class="invalid-feedback">Please upload an image.</div>
                                             <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>

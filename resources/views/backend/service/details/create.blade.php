@@ -113,7 +113,7 @@
                                         </div>
 
                                         <hr>
-                                        <h3># Road Construction Services Section</h3>
+                                        <h3># Service Section/Additional Information</h3>
 
                                         <!-- Section Heading 2-->
                                         <div class="col-md-6">
