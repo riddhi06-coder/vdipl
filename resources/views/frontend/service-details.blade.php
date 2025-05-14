@@ -9,7 +9,6 @@
     .test
         {
         display: block !important;
-        font-size: 18px !important
         }
     </style>
 
