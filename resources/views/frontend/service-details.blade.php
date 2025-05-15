@@ -64,7 +64,7 @@
         <section class="accordion-main"> 
 
             <div class="heading text-center mt-5" data-aos="fade-up" data-aos-duration="1000">
-                    <h2>{{ $intro->section_heading2 ?? '' }}/h2>
+                    <h2>{{ $intro->section_heading2 ?? '' }}</h2>
             </div>
 
             @if(!empty($bannerTitles) && !empty($bannerImages) && !empty($bannerDescriptions))
