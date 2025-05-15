@@ -77,17 +77,42 @@
                                         <div class="col-md-6">
                                             <label class="form-label" for="banner_image">Banner Image</label>
                                             <input class="form-control" id="banner_image" type="file" name="banner_image" accept=".jpg, .jpeg, .png, .webp" onchange="previewBannerImage()">
+                                            <input type="hidden" name="remove_banner_image" id="remove_banner_image" value="0">
+
                                             <div class="invalid-feedback">Please upload an image.</div>
                                             <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small>
                                             <br>
                                             <small class="text-secondary"><b>Only .jpg, .jpeg, .png, .webp formats are allowed.</b></small>
 
-                                          <!-- Preview Section (Moved here) -->
-                                          <div id="bannerImagePreviewContainer" style="{{ $details->banner_image ? 'display: block; margin-top: 10px;' : 'display: none; margin-top: 10px;' }}">
-                                                @if($details->banner_image)
-                                                    <img id="banner_image_preview" src="{{ asset('uploads/projects/' . $details->banner_image) }}" alt="Banner Image" style="max-height: 200px;" class="mt-2">
-                                                @endif
+                                            <!-- Preview Section with Cross Button -->
+                                            <div id="bannerImagePreviewContainer" style="{{ $details->banner_image ? 'display: block; margin-top: 10px;' : 'display: none; margin-top: 10px;' }}">
+                                                <div style="position: relative; display: inline-block;">
+                                                    <button type="button" onclick="removeBannerImage()" style="
+                                                        position: absolute;
+                                                        top: -10px;
+                                                        right: -10px;
+                                                        background: #dc3545;
+                                                        color: #fff;
+                                                        border: none;
+                                                        border-radius: 50%;
+                                                        width: 24px;
+                                                        height: 24px;
+                                                        font-size: 16px;
+                                                        line-height: 20px;
+                                                        text-align: center;
+                                                        cursor: pointer;
+                                                        z-index: 2;
+                                                        box-shadow: 0 0 3px rgba(0,0,0,0.3);
+                                                    ">×</button>
+
+                                                    @if($details->banner_image)
+                                                        <img id="banner_image_preview" src="{{ asset('uploads/projects/' . $details->banner_image) }}" alt="Banner Image" style="max-height: 200px;" class="mt-2">
+                                                    @else
+                                                        <img id="banner_image_preview" src="" alt="Banner Image" style="max-height: 200px;" class="mt-2">
+                                                    @endif
+                                                </div>
                                             </div>
+
                                         </div>
 
 
@@ -210,14 +235,42 @@
 
         <!---- For Image---->
         <script>
-            function previewBannerImage() {
-                const file = document.getElementById('banner_image').files[0];
+            // function previewBannerImage() {
+            //     const file = document.getElementById('banner_image').files[0];
+            //     const previewContainer = document.getElementById('bannerImagePreviewContainer');
+            //     const previewImage = document.getElementById('banner_image_preview');
+
+            //     // Clear the previous preview
+            //     previewImage.src = '';
+                
+            //     if (file) {
+            //         const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+
+            //         if (validImageTypes.includes(file.type)) {
+            //             const reader = new FileReader();
+
+            //             reader.onload = function (e) {
+            //                 // Display the image preview
+            //                 previewImage.src = e.target.result;
+            //                 previewContainer.style.display = 'block';  // Show the preview section
+            //             };
+
+            //             reader.readAsDataURL(file);
+            //         } else {
+            //             alert('Please upload a valid image file (jpg, jpeg, png, webp).');
+            //             previewContainer.style.display = 'none';
+            //         }
+            //     }
+            // }
+
+              function previewBannerImage() {
+                const fileInput = document.getElementById('banner_image');
+                const file = fileInput.files[0];
                 const previewContainer = document.getElementById('bannerImagePreviewContainer');
                 const previewImage = document.getElementById('banner_image_preview');
 
-                // Clear the previous preview
                 previewImage.src = '';
-                
+
                 if (file) {
                     const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
 
@@ -225,9 +278,8 @@
                         const reader = new FileReader();
 
                         reader.onload = function (e) {
-                            // Display the image preview
                             previewImage.src = e.target.result;
-                            previewContainer.style.display = 'block';  // Show the preview section
+                            previewContainer.style.display = 'block';
                         };
 
                         reader.readAsDataURL(file);
@@ -237,6 +289,14 @@
                     }
                 }
             }
+
+            function removeBannerImage() {
+                document.getElementById('banner_image').value = ''; // Clear file input
+                document.getElementById('banner_image_preview').src = ''; // Clear preview image
+                document.getElementById('bannerImagePreviewContainer').style.display = 'none'; // Hide preview container
+                document.getElementById('remove_banner_image').value = '1'; // Mark image for removal
+            }
+
 
             function previewImage() {
                 const file = document.getElementById('image').files[0];

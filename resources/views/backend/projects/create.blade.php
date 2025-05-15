@@ -82,8 +82,29 @@
 
                                             <!-- Preview Section (Moved here) -->
                                             <div id="bannerImagePreviewContainer" style="display: none; margin-top: 10px;">
-                                                <img id="banner_image_preview" src="" alt="Preview" class="img-fluid" style="max-height: 200px; border: 1px solid #ddd; padding: 5px;">
+                                                <div style="position: relative; display: inline-block;">
+                                                    <button type="button" onclick="removeBannerImage()" style="
+                                                        position: absolute;
+                                                        top: -10px;
+                                                        right: -10px;
+                                                        background: #dc3545;
+                                                        color: #fff;
+                                                        border: none;
+                                                        border-radius: 50%;
+                                                        width: 24px;
+                                                        height: 24px;
+                                                        font-size: 16px;
+                                                        line-height: 20px;
+                                                        text-align: center;
+                                                        cursor: pointer;
+                                                        z-index: 2;
+                                                        box-shadow: 0 0 3px rgba(0,0,0,0.3);
+                                                    ">×</button>
+
+                                                    <img id="banner_image_preview" src="" alt="Preview" class="img-fluid" style="max-height: 200px; border: 1px solid #ddd; padding: 5px;">
+                                                </div>
                                             </div>
+
                                         </div>
 
 
@@ -195,13 +216,13 @@
         <!---- For Image---->
         <script>
             function previewBannerImage() {
-                const file = document.getElementById('banner_image').files[0];
+                const fileInput = document.getElementById('banner_image');
+                const file = fileInput.files[0];
                 const previewContainer = document.getElementById('bannerImagePreviewContainer');
                 const previewImage = document.getElementById('banner_image_preview');
 
-                // Clear the previous preview
                 previewImage.src = '';
-                
+
                 if (file) {
                     const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
 
@@ -209,9 +230,8 @@
                         const reader = new FileReader();
 
                         reader.onload = function (e) {
-                            // Display the image preview
                             previewImage.src = e.target.result;
-                            previewContainer.style.display = 'block';  // Show the preview section
+                            previewContainer.style.display = 'block';
                         };
 
                         reader.readAsDataURL(file);
@@ -221,6 +241,13 @@
                     }
                 }
             }
+
+            function removeBannerImage() {
+                document.getElementById('banner_image').value = ''; // Clear input
+                document.getElementById('banner_image_preview').src = ''; // Clear preview
+                document.getElementById('bannerImagePreviewContainer').style.display = 'none'; // Hide preview container
+            }
+            
 
             function previewImage() {
                 const file = document.getElementById('image').files[0];

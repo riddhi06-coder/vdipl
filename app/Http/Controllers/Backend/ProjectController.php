@@ -145,14 +145,29 @@ class ProjectController extends Controller
             'gallery_image.*.max' => 'Each gallery image must be less than 2MB.',
         ]);
 
+
         // Handle banner_image upload
         if ($request->hasFile('banner_image')) {
             $imageFile = $request->file('banner_image');
             $bannerImageName = time() . rand(10, 999) . '.' . $imageFile->getClientOriginalExtension();
             $imageFile->move(public_path('/uploads/projects/'), $bannerImageName);
 
+            // Delete old image if exists
+            if ($project->banner_image && file_exists(public_path('/uploads/projects/' . $project->banner_image))) {
+                unlink(public_path('/uploads/projects/' . $project->banner_image));
+            }
+
             $project->banner_image = $bannerImageName;
         }
+
+        // If user removed the image manually via the cross button
+        if ($request->input('remove_banner_image') == '1') {
+            if ($project->banner_image && file_exists(public_path('/uploads/projects/' . $project->banner_image))) {
+                unlink(public_path('/uploads/projects/' . $project->banner_image));
+            }
+            $project->banner_image = null;
+        }
+
 
         // Handle image upload
         if ($request->hasFile('image')) {
