@@ -147,8 +147,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
-
+                                        
 
                                         <!-- Description -->
                                         <div class="col-md-12" style="margin-bottom: 20px;">
