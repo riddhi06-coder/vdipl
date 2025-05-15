@@ -75,7 +75,29 @@
 
                                             <!-- Preview Section (Moved here) -->
                                             <div id="bannerImagePreviewContainer" style="display: none; margin-top: 10px;">
-                                                <img id="banner_image_preview" src="" alt="Preview" class="img-fluid" style="max-height: 200px; border: 1px solid #ddd; padding: 5px;">
+                                                <div style="position: relative; display: inline-block;">
+                                                    <!-- Cross button to remove image -->
+                                                    <button type="button" onclick="removeBannerImage()" style="
+                                                        position: absolute;
+                                                        top: -10px;
+                                                        right: -10px;
+                                                        background: #dc3545;
+                                                        color: #fff;
+                                                        border: none;
+                                                        border-radius: 50%;
+                                                        width: 24px;
+                                                        height: 24px;
+                                                        font-size: 16px;
+                                                        line-height: 20px;
+                                                        text-align: center;
+                                                        cursor: pointer;
+                                                        z-index: 2;
+                                                        box-shadow: 0 0 3px rgba(0,0,0,0.3);
+                                                    ">×</button>
+
+                                                    <!-- Preview image -->
+                                                    <img id="banner_image_preview" src="" alt="Preview" class="img-fluid" style="max-height: 200px; border: 1px solid #ddd; padding: 5px;">
+                                                </div>
                                             </div>
                                         </div>
                                       
@@ -93,13 +115,36 @@
                                          <div class="col-md-6">
                                             <label class="form-label" for="image">Image </label>
                                             <input class="form-control" id="image" type="file" name="image" accept=".jpg, .jpeg, .png, .webp" onchange="previewImage()">
+                                            <input type="hidden" id="remove_image" name="remove_image" value="0">
+
                                             <div class="invalid-feedback">Please upload a Image.</div>
                                             <small class="text-secondary"><b>Note: The file size should be less than 2MB.</b></small><br>
                                             <small class="text-secondary"><b>Note: Only files in .jpg, .jpeg, .png, .webp format can be uploaded.</b></small>
 
                                             <!-- Preview Section placed right below -->
                                             <div id="ImagePreviewContainer" style="display: none; margin-top: 10px;">
-                                                <img id="image_preview" src="" alt="Preview" class="img-fluid" style="max-height: 200px; border: 1px solid #ddd; padding: 5px;">
+                                                <div style="position: relative; display: inline-block;">
+
+                                                    <button type="button" onclick="removeImage()" style="
+                                                        position: absolute;
+                                                        top: -10px;
+                                                        right: -10px;
+                                                        background: #dc3545;
+                                                        color: #fff;
+                                                        border: none;
+                                                        border-radius: 50%;
+                                                        width: 24px;
+                                                        height: 24px;
+                                                        font-size: 16px;
+                                                        line-height: 20px;
+                                                        text-align: center;
+                                                        cursor: pointer;
+                                                        z-index: 2;
+                                                        box-shadow: 0 0 3px rgba(0,0,0,0.3);
+                                                    ">×</button>
+
+                                                    <img id="image_preview" src="" alt="Preview" class="img-fluid" style="max-height: 200px; border: 1px solid #ddd; padding: 5px;">
+                                                </div>
                                             </div>
                                         </div>
 
@@ -197,14 +242,42 @@
 
         <!---- For Image---->
         <script>
+            // function previewBannerImage() {
+            //     const file = document.getElementById('banner_image').files[0];
+            //     const previewContainer = document.getElementById('bannerImagePreviewContainer');
+            //     const previewImage = document.getElementById('banner_image_preview');
+
+            //     // Clear the previous preview
+            //     previewImage.src = '';
+                
+            //     if (file) {
+            //         const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+
+            //         if (validImageTypes.includes(file.type)) {
+            //             const reader = new FileReader();
+
+            //             reader.onload = function (e) {
+            //                 // Display the image preview
+            //                 previewImage.src = e.target.result;
+            //                 previewContainer.style.display = 'block';  // Show the preview section
+            //             };
+
+            //             reader.readAsDataURL(file);
+            //         } else {
+            //             alert('Please upload a valid image file (jpg, jpeg, png, webp).');
+            //             previewContainer.style.display = 'none';
+            //         }
+            //     }
+            // }
+
             function previewBannerImage() {
-                const file = document.getElementById('banner_image').files[0];
+                const fileInput = document.getElementById('banner_image');
+                const file = fileInput.files[0];
                 const previewContainer = document.getElementById('bannerImagePreviewContainer');
                 const previewImage = document.getElementById('banner_image_preview');
 
-                // Clear the previous preview
                 previewImage.src = '';
-                
+
                 if (file) {
                     const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
 
@@ -212,9 +285,8 @@
                         const reader = new FileReader();
 
                         reader.onload = function (e) {
-                            // Display the image preview
                             previewImage.src = e.target.result;
-                            previewContainer.style.display = 'block';  // Show the preview section
+                            previewContainer.style.display = 'block';
                         };
 
                         reader.readAsDataURL(file);
@@ -225,14 +297,22 @@
                 }
             }
 
+            function removeBannerImage() {
+                document.getElementById('banner_image').value = ''; // Clear input
+                document.getElementById('banner_image_preview').src = ''; // Clear preview
+                document.getElementById('bannerImagePreviewContainer').style.display = 'none'; // Hide preview container
+            }
+
             function previewImage() {
-                const file = document.getElementById('image').files[0];
+                const fileInput = document.getElementById('image');
+                const file = fileInput.files[0];
                 const previewContainer = document.getElementById('ImagePreviewContainer');
                 const previewImage = document.getElementById('image_preview');
+                const removeInput = document.getElementById('remove_image');
 
-                // Clear the previous preview
                 previewImage.src = '';
-                
+                removeInput.value = '0';
+
                 if (file) {
                     const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
 
@@ -240,17 +320,28 @@
                         const reader = new FileReader();
 
                         reader.onload = function (e) {
-                            // Display the image preview
                             previewImage.src = e.target.result;
-                            previewContainer.style.display = 'block';  // Show the preview section
+                            previewContainer.style.display = 'block';
                         };
 
                         reader.readAsDataURL(file);
                     } else {
-                        alert('Please upload a valid image file (jpg, jpeg, png, webp).');
+                        alert('Invalid image format.');
+                        fileInput.value = '';
+                        previewContainer.style.display = 'none';
                     }
+                } else {
+                    previewContainer.style.display = 'none';
                 }
             }
+
+            function removeImage() {
+                document.getElementById('image').value = '';
+                document.getElementById('image_preview').src = '';
+                document.getElementById('ImagePreviewContainer').style.display = 'none';
+                document.getElementById('remove_image').value = '1';
+            }
+
 
         </script>
 

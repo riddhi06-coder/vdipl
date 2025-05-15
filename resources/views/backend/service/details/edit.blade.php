@@ -80,7 +80,7 @@
                                             <!-- Preview Section (Moved here) -->
                                             <div id="bannerImagePreviewContainer" style="{{ $details->banner_image ? 'display: block; margin-top: 10px;' : 'display: none; margin-top: 10px;' }}">
                                                 @if($details->banner_image)
-                                                    <img id="banner_image_preview" src="{{ asset('uploads/service/' . $details->banner_image) }}" alt="Banner Image" style="max-height: 200px;" class="mt-2">
+                                                    <img id="banner_image_preview" src="{{ asset('uploads/service/' . $details->banner_image) }}" alt="Banner Image" style="max-height: 100px;" class="mt-2">
                                                 @endif
                                             </div>
                                         </div>
